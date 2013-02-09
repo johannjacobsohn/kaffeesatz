@@ -2,138 +2,167 @@
  * 
  *   
  */
-var request = require("request"),
+var
+	request = require("request"),
 	expect = require('expect.js'),
 	server = require("../server.js"),
-	url = "http://localhost:1234";
-	
-	var databaseUrl = "coffeedb";
-	var collections = ["beverages", "users"];
-	var db = require("mongojs").connect(databaseUrl, collections);
-	db.users.drop()
+	url = "http://localhost:1234",
+	databaseUrl = "coffeedb",
+	collections = ["beverages", "users"],
+	db = require("mongojs").connect(databaseUrl, collections);
 
-describe( "server: GET /", function(){
-	it( "returns no users when non have been created", function(done){
-		request(url, function(err, body){
-			expect(body).to.not.be(undefined);
-			var res = JSON.parse(body.body);
-			expect(err).to.be(null);
-			expect(res).to.be.an("array");
-			expect(res).to.be.empty();
-			done();
-		});
-	});
-});
-
-describe( "server: POST /{user}", function(){
-	it( "adds a user", function(done){
-		request.post(url+"/Klaus", function(err, body){
-			var res = JSON.parse(body.body);
-			expect(res.err).to.be(null);
-
-			request(url, function(err, body){
-				expect(body).to.not.be(undefined);
-				var res = JSON.parse(body.body);
-				expect(err).to.be(null);
-				expect(res).to.be.an("array");
-				expect(res).to.not.be.empty();
-				done();
+describe( "users", function(){
+	describe( "server: GET /users/", function(){
+		it( "returns no users when non have been created", function(done){
+			db.users.drop(function(){
+				request(url+"/users/", function(err, body){
+					expect(body).to.not.be(undefined);
+					var res = JSON.parse(body.body);
+					expect(err).to.be(null);
+					expect(res).to.be.an("array");
+					expect(res).to.be.empty();
+					done();
+				});
 			});
 		});
 	});
-});
 
-describe( "server: POST /{user}", function(){
-	it( "adds another user with the same name and triggers an error", function(done){
-		request.post(url+"/Klaus", function(err, body){
-			expect(err).to.be(null);
-			var res = JSON.parse(body.body);
-			expect(res.err).to.not.be(null);
-			request(url, function(err, body){
-				expect(body).to.not.be(undefined);
+	describe( "server: POST /users/", function(){
+		it( "adds a user", function(done){
+			var o ={
+				uri:url+"/users",
+				headers:{'content-type': 'application/x-www-form-urlencoded'},
+				body:require('querystring').stringify( {name: "Klaus"} )
+			};
+			request.post(o, function(err, body){
+				var res = JSON.parse(body.body);
+				expect(res.err).to.be(null);
+
+				request(url+"/users", function(err, body){
+					expect(body).to.not.be(undefined);
+					var res = JSON.parse(body.body);
+					expect(err).to.be(null);
+					expect(res).to.be.an("array");
+					expect(res).to.not.be.empty();
+					done();
+				});
+			});
+		});
+	});
+
+	describe( "server: POST /users/{user}", function(){
+		it( "adds another user with the same name and triggers an error", function(done){
+			var o ={
+				uri:url+"/users/",
+				headers:{'content-type': 'application/x-www-form-urlencoded'},
+				body:require('querystring').stringify( {name: "Klaus"} )
+			};
+			request.post(o, function(err, body){
+				expect(err).to.be(null);
+				var res = JSON.parse(body.body);
+				expect(res.err).to.not.be(null);
+				request(url+"/users", function(err, body){
+					expect(body).to.not.be(undefined);
+					var res = JSON.parse(body.body);
+					expect(err).to.be(null);
+					expect(res).to.be.an("array");
+					expect(res).to.have.length(1);
+					done();
+				});
+			});
+		});
+	});
+
+	describe( "server: GET /", function(){
+		it( "returns one users when one has been created", function(done){
+			request(url+"/users/", function(err, body){
+				expect(body).to.not.be(null);
 				var res = JSON.parse(body.body);
 				expect(err).to.be(null);
 				expect(res).to.be.an("array");
 				expect(res).to.have.length(1);
+				expect(res[0].name).to.be("Klaus");
+				expect(res[0].beverages).to.be(undefined);
 				done();
+			});
+		});
+	});
+
+	describe( "server: POST /users/{{user}}/{{beverages}}", function(){
+		it( "adds a beverage to an user, returns user", function(done){
+			request.post(url+"/users/Klaus/Espresso", function(err, body){
+				expect(err).to.be(null);
+				var returned = JSON.parse(body.body);
+				expect(returned.beverages).to.eql({Espresso: 1});
+				expect(returned.name).to.be("Klaus");
+
+				request(url+"/users", function(err, body){
+					expect(err).to.be(null);
+					var res = JSON.parse(body.body);
+					expect(res[0]).to.eql(returned);
+					done();
+				});
+			});
+		});
+	});
+
+	//@TODO: 
+//	users.get
+
+// user.put
+	describe( "server: PUT /users/{{user}}", function(){
+		it( "update a user", function(done){
+			
+			var o = {
+				uri:url+"/users/Klaus",
+				headers:{'content-type': 'application/x-www-form-urlencoded'},
+				body:require('querystring').stringify( {name: "Klaus", beverages: {} } )
+			};
+			request.put(o, function(err, body){
+				expect(err).to.be(null);
+				var returned = JSON.parse(body.body);
+				expect(returned.beverages).to.be.empty();
+				expect(returned.name).to.be("Klaus");
+
+				request(url+"/users", function(err, body){
+					expect(err).to.be(null);
+					var res = JSON.parse(body.body);
+					expect(res[0]).to.eql(returned);
+					done();
+				});
+			});
+		});
+	});
+
+
+	describe( "server: DELETE /users/{{user}}", function(){
+		it( "deletes a user", function(done){
+			request.del(url+"/users/Klaus", function(err){
+				expect(err).to.be(null);
+				request(url+"/users", function(err, body){
+					expect(err).to.be(null);
+					var res = JSON.parse(body.body);
+
+					expect(err).to.be(null);
+					expect(res).to.be.an("array");
+					expect(res).to.be.empty();
+					done();
+				});
 			});
 		});
 	});
 });
 
-describe( "server: GET /", function(){
-	it( "returns one users when one has been created", function(done){
-		request(url, function(err, body){
-			expect(body).to.not.be(null);
-			var res = JSON.parse(body.body);
-			expect(err).to.be(null);
-			expect(res).to.be.an("array");
-			expect(res).to.have.length(1);
-			expect(res[0].name).to.be("Klaus");
-			expect(res[0].beverages).to.be(undefined);
-			done();
-		});
-	});
-});
 
-describe( "server: GET /beverages", function(){
-	it( "gets a list of available beverages", function(done){
-		request(url+"/beverages", function(err, body){
-			expect(body).to.not.be(null);
-			var res = JSON.parse(body.body);
-			expect(err).to.be(null);
-			expect(res).to.be.an("array");
-			expect(res).to.not.be.empty();
-			done();
-		});
-	});
-});
 
-describe( "server: POST /{{user}}/{{beverages}}", function(){
-	it( "adds a beverage to an user, returns user", function(done){
-		request.post(url+"/Klaus/Espresso", function(err, body){
-			expect(err).to.be(null);
-			var returned = JSON.parse(body.body);
-			expect(returned.beverages).to.eql({Espresso: 1});
-			expect(returned.name).to.be("Klaus");
 
-			request(url, function(err, body){
-				expect(err).to.be(null);
+
+describe( "beverages: ", function(){
+	describe( "server: GET /beverages", function(){
+		it( "gets a list of available beverages", function(done){
+			request(url+"/beverages", function(err, body){
+				expect(body).to.not.be(null);
 				var res = JSON.parse(body.body);
-				expect(res[0]).to.eql(returned);
-				done();
-			});
-		});
-	});
-});
-
-describe( "server: PUT /{{user}}/clear", function(){
-	it( "clears out a users beverage list", function(done){
-		request.put(url+"/Klaus/clear", function(err, body){
-			expect(err).to.be(null);
-			var returned = JSON.parse(body.body);
-			expect(returned.beverages).to.be(undefined);
-			expect(returned.name).to.be("Klaus");
-
-			request(url, function(err, body){
-				expect(err).to.be(null);
-				var res = JSON.parse(body.body);
-				expect(res[0]).to.eql(returned);
-				done();
-			});
-		});
-	});
-});
-
-
-describe( "server: DELETE /{{user}}", function(){
-	it( "deletes a user", function(done){
-		request.del(url+"/Klaus", function(err){
-			expect(err).to.be(null);
-			request(url, function(err, body){
-				expect(err).to.be(null);
-				var res = JSON.parse(body.body);
-
 				expect(err).to.be(null);
 				expect(res).to.be.an("array");
 				expect(res).to.be.empty();
@@ -141,5 +170,68 @@ describe( "server: DELETE /{{user}}", function(){
 			});
 		});
 	});
+
+	describe( "server: POST /beverage/", function(){
+		it( "adds a beverage", function(done){
+			var o = {
+				uri:url+"/beverages",
+				headers:{'content-type': 'application/x-www-form-urlencoded'},
+				body:require('querystring').stringify( {name: "Kaffee", cost: 0.99} )
+			};
+			request.post(o, function(err, body){
+				var res = JSON.parse(body.body);
+				expect(res.err).to.be(null);
+
+				request(url+"/beverages", function(err, body){
+					expect(body).to.not.be(undefined);
+					var res = JSON.parse(body.body);
+					expect(err).to.be(null);
+					expect(res).to.be.an("array");
+					expect(res).to.not.be.empty();
+					done();
+				});
+			});
+		});
+	});
+
+
+	//@TODO: 
+//	beverage.get
+
+	describe( "server: DELETE /beverages/:beverage", function(){
+		it( "deletes a beverage", function(done){
+			request.del(url+"/beverages/Kaffee", function(err){
+				expect(err).to.be(null);
+				request(url+"/beverages", function(err, body){
+					expect(err).to.be(null);
+					var res = JSON.parse(body.body);
+
+					expect(err).to.be(null);
+					expect(res).to.be.an("array");
+					expect(res).to.be.empty();
+					done();
+				});
+			});
+		});
+	});
+
+	describe( "server: DELETE /beverages/:beverage", function(){
+		it( "deletes a beverage", function(done){
+			request.del(url+"/beverages/Kaffee", function(err){
+				expect(err).to.be(null);
+				request(url+"/beverages", function(err, body){
+					expect(err).to.be(null);
+					var res = JSON.parse(body.body);
+
+					expect(err).to.be(null);
+					expect(res).to.be.an("array");
+					expect(res).to.be.empty();
+					done();
+				});
+			});
+		});
+	});
+
+
 });
 
