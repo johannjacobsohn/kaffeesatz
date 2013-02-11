@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Letsmakesomecoffee: Admin</title>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
+	<body>
+		<div class="page-header">
+			<a data-placement="bottom" data-content="Diese App kann auf dem Computer installiert werden" data-toggle="popover" class="btn btn-large help pull-right install-app" href="#" data-original-title="App installieren"><i class="icon-download"></i> Installieren</a>
+			<h1>☕ Leude verwalten <a class="btn show-help">?</a></h1>
+		</div>
+
+		<ul class="nav nav-tabs" id="myTab">
+			<li class="active"><a href="#users-tab" data-toggle="tab">Leude</a></li>
+			<li><a href="#beverages-tab" data-toggle="tab">Getränke</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="users-tab" class="tab-pane active">
+				<table class="table table-striped" id="users"></table>
+				<button id='add-user' class="btn help" data-content="Hier können neue Nutzer angelegt werden" data-original-title="Nutzer anlegen"><i class=" icon-plus-sign"></i> Neuer Nutzer</button>
+			</div>
+			<div id="beverages-tab" class="tab-pane">
+				<table class="table table-striped" id="beverages"></table>
+				<button id='add-beverage' class="btn"><i class=" icon-plus-sign"></i> Neues Getränk</button>
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<form id="user-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Neuen Mitarbeiter anlegen</h3>
+			</div>
+			<div class="modal-body">
+				<input type="text" placeholder="Type something…">
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button class="btn btn-primary">Save changes</button>
+			</div>
+		</form>
+		
+		<form id="beverage-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Neues Getränk anlegen</h3>
+			</div>
+			<div class="modal-body">
+				<input class="name" type="text" placeholder="Getränk, z.B. Kaffee">
+				<input class="price" type="text" placeholder="Getränkepreis">€
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button class="btn btn-primary">Save changes</button>
+			</div>
+		</form>
+
+		<script type="text/template" id="user_template">
+			<td><%= name %></td>
+			<td><%= beverages %></td>
+			<td><span class="badge"><%= cost %>€</span></td>
+			<td>
+				<span class="clear btn btn-success"><i class="icon-ok"></i> Hat bezahlt</span>
+				<span class="delete btn btn-warning"><i class="icon-remove-circle"></i> Löschen</span>
+			</td>
+		</script>
+
+		<script type="text/template" id="beverage_template">
+			<td><%= name %></td>
+			<td><span class="badge"><%= price %>€</span></td>
+			<td>
+				<span class="delete btn btn-warning"><i class="icon-remove-circle"></i> Löschen</span>
+			</td>
+		</script>
+
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script>
+		// thanks Bootstrap...!
+		!(function(){
+			var hash = document.location.hash, prefix = "tab_";
+			if (hash) {
+				$('.nav-tabs a[href='+hash.replace(prefix,"")+']').tab('show');
+			} 
+
+			// Change hash for page-reload
+			$('.nav-tabs a').on('shown', function (e) {
+				window.location.hash = e.target.hash.replace("#", "#" + prefix);
+			});
+		})();
+		
+		(function(){
+			var showing = false;
+			$(".show-help").click(function(e){
+				e.preventDefault();
+				$(".help").popover( showing ? "hide" : "show" );
+				showing = !showing;
+			});
+		})();
+
+		(function(){
+			$(".install-app").toggle(!!navigator.mozApps).click(function(){
+				var index = window.location.href.lastIndexOf("/");
+				if(index > window.location.href.indexOf("://")+2) {
+					url = window.location.href.substring(0, index+1) + "manifest.webapp";
+				} else {
+					url = window.location.href + "/manifest.webapp";
+				}
+				var installRequest = navigator.mozApps.install(url);
+				installRequest.onsuccess = function(){
+					alert("wurde installiert!")
+				};
+				installRequest.onerror = function(){
+					alert("konnte nicht installiert werden!")
+				};
+			});
+			if(navigator.mozApps) {
+				var request = navigator.mozApps.getSelf();
+				request.onsuccess = function (response) {
+					if(request.result){
+						$(".install-app").hide();
+					}
+				};
+			}
+		})();
+		</script>
+		<script src="js/underscore-min.js"></script>
+		<script src="js/backbone-min.js"></script>
+		<script src="js/beverages.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
