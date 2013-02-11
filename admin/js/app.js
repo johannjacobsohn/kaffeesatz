@@ -6,24 +6,24 @@
 	var User = Backbone.Model.extend({
 		defaults: {
 			name: 'Klaus',
-			beverages: { Tee: 1, "Kaffee": 4 }
+			beverages: { }
 		},
 		idAttribute: "_id", // MongoDB-Style
 		url: function(){
-			return 'http://localhost:1234/users/'+this.get("name")
+			return '/users/'+this.get("name")
 		}
 	});
 
 	var Users = Backbone.Collection.extend({
 		model: User,
-		url: 'http://localhost:1234/users',
+		url: '/users',
 		comparator: function(user){
 			return user.get('name');
 		}
 	});
 
 	users = new Users();
-	var socket = io.connect('http://localhost');
+	var socket = io.connect('/');
 	socket.on('userChanged', function (data) {
 		users.where({name: data.name})[0].set(data);
 	});
@@ -48,7 +48,8 @@
 			var cost = 0;
 			var cost = Object.keys( beverages )
 				.map(function(key){
-					return beverageCollection.where({name: key})[0].get("price")*beverages[key]; })
+					var beverage = beverageCollection.where({name: key})[0];
+					return beverage ? beverage.get("price")*beverages[key] : 0; })
 				.reduce( function(a, b){ return a+b; }, 0);
 			var userTemplate = _.template( $("#user_template").html(), {name: this.model.get('name'), beverages: beveragesStr, cost: cost} );
 			$(this.el).html( userTemplate );

@@ -46,7 +46,7 @@ enyo.kind({
 		var that = this;
 		//DEBUG:
 		userCollect = that;
-		var socket = io.connect('http://localhost');
+		var socket = io.connect('/');
 		var name = 'usersChanged:' + this.get("name");
 		enyo.log("listen to", name)
 		socket.on("userChanged", function (data) {

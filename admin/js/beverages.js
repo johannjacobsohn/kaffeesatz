@@ -9,13 +9,13 @@
 		},
 		idAttribute: "_id",
 		url: function(){
-			return 'http://localhost:1234/beverages/'+this.get("name")
+			return '/beverages/'+this.get("name")
 		}
 	});
 
 	var Beverages = Backbone.Collection.extend({
 		model: Beverage,
-		url: 'http://localhost:1234/beverages',
+		url: '/beverages',
 		comparator: function(user){
 			return user.get('name');
 		}
