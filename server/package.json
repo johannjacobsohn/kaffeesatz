@@ -1,14 +1,14 @@
 {
-	"name": "mensaapp-server",
+	"name": "kaffeesatz-server",
 	"version": "0.1.0",
 	"license": "MIT",
 	"dependencies": {
 		"express": "3.x",
-		"forever": "0.9.x",
 		"request": "2.x",
 		"mongojs": "",
 		"mocha"  : "",
-		"expect.js": "" 
+		"expect.js": "",
+		"socket.io": ""
 	}
 }
 
