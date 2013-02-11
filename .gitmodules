@@ -1,0 +1,15 @@
+[submodule "app/lib/enyo-2-components"]
+	path = app/lib/enyo-2-components
+	url = https://github.com/JayCanuck/enyo-2-components
+[submodule "app/lib/mvc"]
+	path = app/lib/mvc
+	url = git://github.com/enyojs/mvc.git
+[submodule "app/lib/layout"]
+	path = app/lib/layout
+	url = git://github.com/enyojs/layout.git
+[submodule "app/lib/onyx"]
+	path = app/lib/onyx
+	url = git://github.com/enyojs/onyx.git
+[submodule "app/enyo"]
+	path = app/enyo
+	url = git://github.com/enyojs/enyo.git

@@ -1,0 +1,11 @@
+enyo.depends(
+	"$lib/layout",
+	"$lib/onyx",
+	"$lib/mvc",
+	"models",
+	"controllers",
+	"views",
+	"apps",
+	"start.js",
+	"/socket.io/socket.io.js"
+);
