@@ -38,4 +38,4 @@ exports.beverages = {
 			db.beverages.remove({name:req.params.beverage}, true);
 			res.end(JSON.stringify({})); // backbone expect a result
 		}
-	}
+	};

@@ -7,7 +7,7 @@ enyo.ready(function() {
 		},
 		idAttribute: "_id", // MongoDB-Style
 		url: function(){
-			return '/users/'+this.get("name")
+			return '/users/'+this.get("name");
 		}
 	});
 });

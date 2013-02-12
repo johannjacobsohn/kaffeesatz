@@ -1,0 +1,8 @@
+app/enyo
+app/lib
+server/node_modules
+server/test
+admin/test
+app/test
+app/build/
+admin/js/lib

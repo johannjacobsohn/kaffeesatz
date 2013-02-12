@@ -6,7 +6,7 @@ enyo.ready(function() {
 		},
 		idAttribute: "_id",
 		url: function(){
-			return '/beverages/'+this.get("name")
+			return '/beverages/'+this.get("name");
 		}
 	});
 });

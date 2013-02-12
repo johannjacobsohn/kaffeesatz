@@ -1,6 +1,6 @@
 if(process.env.VCAP_SERVICES){
 	var env = JSON.parse(process.env.VCAP_SERVICES);
-	var mongo = env['mongodb-1.8'][0]['credentials'];
+	var mongo = env['mongodb-1.8'][0].credentials;
 } else {
 	var mongo = {
 		"hostname":"localhost",
@@ -9,7 +9,7 @@ if(process.env.VCAP_SERVICES){
 		"password":"",
 		"name":"coffeedb",
 		"db":"db"
-	}
+	};
 }
 var generate_mongo_url = function(obj){
 	obj.hostname = (obj.hostname || 'localhost');
@@ -21,7 +21,7 @@ var generate_mongo_url = function(obj){
 	else{
 		return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
 	}
-}
+};
 var mongourl = generate_mongo_url(mongo);
 
 var collections = ["beverages", "users"];

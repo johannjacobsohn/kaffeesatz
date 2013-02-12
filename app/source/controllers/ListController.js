@@ -15,7 +15,7 @@ enyo.kind({
 	name: "Coffee.UserController",
 	kind: "enyo.ModelController",
 	corresondingCount: enyo.Computed(function () {
-		console.log("recalculate count")
+		enyo.log("recalculate count");
 		var count = "Ompalompa";
 		if(this.data) {
 			var correspondingBeverage = this.data.get("correspondingBeverage");
@@ -29,7 +29,7 @@ enyo.kind({
 		didload: "didLoad"
 	},
 	didLoad: function(){
-		console.log("didLoad Usercontroller!")
+		enyo.log("didLoad Usercontroller!");
 	},
 	tabbing: function(){
 		var beverages = this.data.get("beverages");
@@ -44,14 +44,14 @@ enyo.kind({
 	published: {beverageTap:0},
 	listenToSocket: function(){
 		var that = this;
-		//DEBUG:
-		userCollect = that;
 		var socket = io.connect('/');
 		var name = 'usersChanged:' + this.get("name");
-		enyo.log("listen to", name)
+		enyo.log("listen to", name);
 		socket.on("userChanged", function (data) {
-			console.log("received userChanged", data.name, "is", that.get("name"))
-			if(data.name === that.get("name")) 	that.set(data);
+			enyo.log("received userChanged", data.name, "is", that.get("name"));
+			if(data.name === that.get("name")){
+				that.set(data);
+			}
 		});
 	},
 	created: function(){

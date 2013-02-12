@@ -53,7 +53,7 @@ var users = {
 //					return next(new Error('failed to add User'));
 				}
 				res.end(JSON.stringify({err:err, user: savedUser}));
-			})
+			});
 		},
 		update : function(req, res){
 			req.body.beverages = req.body.beverages || {};
@@ -76,7 +76,7 @@ var users = {
 		get : function(req, res){
 			console.log("implement me");
 		}
-	}
+	};
 
 server.listen(process.env.VMC_APP_PORT || 1234);
 

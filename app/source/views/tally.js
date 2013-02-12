@@ -32,8 +32,7 @@ enyo.kind({
 			item.applyStyle("width", this.bgVals[4][0]*scale + 'px');
 		} else { // last one
 			var i = Math.max((this.number - index*5)%5 - 1, 0);
-			i = this.number%5 === 0 ? 4 : i
-			console.log(this.number, index*5, (this.number - index*5)%5, i)
+			i = this.number%5 === 0 ? 4 : i;
 			item.applyStyle("background-position", this.bgVals[i][1]*scale + "px 0");
 			item.applyStyle("width", this.bgVals[i][0]*scale + 'px');
 		}

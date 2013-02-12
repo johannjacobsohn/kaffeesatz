@@ -116,4 +116,4 @@
 	});
 
 	var usersView = new UsersView();
-})(jQuery);
+}(jQuery));

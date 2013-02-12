@@ -1,6 +1,6 @@
 /**
  * Beverages
- * 
+ *
  */
 	var Beverage = Backbone.Model.extend({
 		defaults: {
@@ -9,7 +9,7 @@
 		},
 		idAttribute: "_id",
 		url: function(){
-			return '/beverages/'+this.get("name")
+			return '/beverages/'+this.get("name");
 		}
 	});
 
@@ -24,9 +24,10 @@
 	var beverageCollection = new Beverages();
 
 (function($){
+	"use strict";
 	var BeverageView = Backbone.View.extend({
-		tagName: 'tr', // name of tag to be created        
-		events: { 
+		tagName: 'tr',
+		events: {
 			'click span.delete'    : 'remove',
 			'click span.set-price' : 'setPrice'
 		},
@@ -45,7 +46,7 @@
 			$(this.el).remove();
 		},
 		setPrice: function(price){
-			this.model.save({price: price})
+			this.model.save({price: price});
 		},
 		remove: function(){
 			this.model.destroy();
@@ -81,7 +82,7 @@
 				var price = $(this).find("input.price").val();
 				that.collection.create( new Beverage({name:name, price:price}), {
 					success: function(){ $(modal).modal("hide"); },
-					error  : function(){ console.log("error")    }
+					error  : function(){ console.log("error");   }
 				});
 			}).one("shown", function(){
 				$(this).find("input").val("").first().focus();
