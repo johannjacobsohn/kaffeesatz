@@ -2,7 +2,7 @@
 	"version": "0.0.1",
 	"name": "Kaffeesatz",
 	"description": "",
-	"launch_path": "/",
+	"launch_path": "/app/",
 	"icons": {
 		"30": "assets/30x30.png",
 		"60": "assets/60x60.png",
