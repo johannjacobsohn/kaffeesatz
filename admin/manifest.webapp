@@ -1,7 +1,7 @@
 {
-	"version": "1.0",
-	"name": "Mensa Hamburg",
-	"description": "Wann gibt es welches Essen in welcher Mensa? Eine App von Studenten für Studenten.",
+	"version": "0.0.1",
+	"name": "Kaffeesatz",
+	"description": "",
 	"launch_path": "/",
 	"icons": {
 		"30": "30x30.png",
@@ -10,7 +10,7 @@
 	},
 	"developer": {
 		"name": "Johann Jacobsohn",
-		"url": "http://mensaapp.org"
+		"url": "http://satzmedia.de"
 	},
 	"default_locale": "de"
 }
