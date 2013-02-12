@@ -1,11 +1,14 @@
 enyo.kind({
 	name: "Coffee.ListView",
 	controller: "Coffee.BeverageCollectionController",
-	style: "height: 100%",
+	classes: "root",
 	layoutKind: "enyo.FittableRowsLayout",
 	components: [
-		{kind: "onyx.Toolbar", content: "Kaffeesatz(media)"},
-		{name: "items", kind: "Scroller", fit: true}
+		{classes: "innerwrapper", components: [
+	//		{kind: "onyx.Toolbar", content: "Kaffeesatz(media)"},
+			{kind: "Image", src:"assets/kaffeesatzmedia.png", style: "display: block; margin: auto;"},
+			{name: "items", kind: "Scroller", fit: true, horizontal: "hidden"}
+		]}	
 	],
 	handlers: {
 		didload: "didload"
@@ -29,3 +32,4 @@ enyo.kind({
 		{from: ".controller.length", to: ".length"}
 	]
 });
+

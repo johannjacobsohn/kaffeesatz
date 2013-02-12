@@ -7,5 +7,5 @@ enyo.depends(
 	"views",
 	"apps",
 	"start.js",
-	"/socket.io/socket.io.js"
+	"style.css"
 );

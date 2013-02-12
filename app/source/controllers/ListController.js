@@ -55,9 +55,7 @@ enyo.kind({
 		});
 	},
 	created: function(){
-//		this.inherited( arguments );
 		this.listenToSocket();
-		console.log("created UserController")
 	}
 });
 

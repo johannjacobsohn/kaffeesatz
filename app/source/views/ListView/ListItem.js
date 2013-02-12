@@ -7,8 +7,9 @@ enyo.kind({
 		{from: ".controller.name", to: ".$.name.content"},
 		{from: ".controller.name", to: ".$.users.correspondingBeverage"}
 	],
+	classes: "beverage",
 	components: [
-		{name: "name", fit: true, style: "font-weight: bold; padding: 4px;"},
+		{name: "name", fit: true, classes: "name",},
 		{name: "users", kind: "Coffee.userList"}
 	]
 });
@@ -31,7 +32,6 @@ enyo.kind({
 		this.syncPanelsToCollection();
 	},
 	didload: function(){
-		console.error("userList loaded");
 		this.syncPanelsToCollection();
 		this.didchange = this.syncPanelsToCollection;
 	},
@@ -61,13 +61,16 @@ enyo.kind({
 	controller: "Coffee.UserController",
 	layoutKind: "enyo.FittableColumnsLayout",
 	fit: true,
+	classes: "user-row",
 	bindings: [
 		{from: ".controller.name", to: ".$.name.content"},
-		{from: ".controller.corresondingCount", to: ".$.corresondingCount.content"}
+//		{from: ".controller.corresondingCount", to: ".$.corresondingCount.content"},
+		{from: ".controller.corresondingCount", to: ".$.count.number"}
 	],
 	components: [
-		{name: "name", style: "width: 100px"},
-		{name: "corresondingCount", fit: true},
+		{name: "name", classes: "name"},
+//		{name: "corresondingCount", classes: "count"},
+		{kind: "Tally", fit: true, name: "count", classes: "count", count: 1, number: 0}
 	],
 	create: function(){
 		this.inherited(arguments);
