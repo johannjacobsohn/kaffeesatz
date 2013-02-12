@@ -1,0 +1,16 @@
+{
+	"version": "0.0.1",
+	"name": "Kaffeesatz",
+	"description": "",
+	"launch_path": "/",
+	"icons": {
+		"30": "assets/30x30.png",
+		"60": "assets/60x60.png",
+		"128": "assets/128x128.png"
+	},
+	"developer": {
+		"name": "Johann Jacobsohn",
+		"url": "http://satzmedia.de"
+	},
+	"default_locale": "de"
+}

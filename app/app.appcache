@@ -1,0 +1,33 @@
+CACHE MANIFEST
+# v 0.0.2
+
+/socket.io/socket.io.js
+index.html
+build/app.css
+build/app.js
+build/enyo.css
+build/enyo.js
+lib/onyx/images/checkbox.png
+lib/onyx/images/grabbutton.png
+lib/onyx/images/gradient-invert.png
+lib/onyx/images/gradient.png
+lib/onyx/images/more.png
+lib/onyx/images/progress-button-cancel.png
+lib/onyx/images/search-input-cancel.png
+lib/onyx/images/search-input-search.png
+lib/onyx/images/slider-handle.png
+lib/onyx/images/spinner-dark.gif
+lib/onyx/images/spinner-light.gif
+
+# apple:
+assets/64x64.png
+assets/72x72.png
+assets/144x144.png
+assets/30x30.png
+assets/60x60.png
+assets/128x128.png
+
+# important for xhr
+NETWORK:
+*
+
