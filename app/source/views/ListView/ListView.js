@@ -4,14 +4,17 @@ enyo.kind({
 	classes: "root",
 	layoutKind: "enyo.FittableRowsLayout",
 	components: [
-		{classes: "innerwrapper", components: [
-	//		{kind: "onyx.Toolbar", content: "Kaffeesatz(media)"},
-			{kind: "Image", src:"assets/kaffeesatzmedia.png", style: "display: block; margin: auto;"},
-			{name: "items", kind: "Scroller", fit: true, horizontal: "hidden"}
-		]}	
+		{kind: "Image", src:"assets/kaffeesatzmedia.png", style: "display: block; margin: auto;"},
+		{name: "items", kind: "Scroller", fit: true, horizontal: "hidden"}
 	],
 	handlers: {
-		didload: "didload"
+		onSynced: "synced"
+	},
+	synced: function(){
+		enyo.log("synced - rerender");
+		this.$.items.render();
+		this.reflow();
+		return true;
 	},
 	lengthChanged: function(){
 		this.syncPanelsToCollection();

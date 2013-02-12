@@ -9,7 +9,7 @@ enyo.kind({
 	],
 	classes: "beverage",
 	components: [
-		{name: "name", fit: true, classes: "name",},
+		{name: "name", fit: true, classes: "name"},
 		{name: "users", kind: "Coffee.userList"}
 	]
 });
@@ -28,21 +28,23 @@ enyo.kind({
 	},
 	didchange: function(){},
 	usersChanged: function(){
-		console.log("received usersChanged");
+		enyo.log("received usersChanged");
 		this.syncPanelsToCollection();
 	},
 	didload: function(){
 		this.syncPanelsToCollection();
 		this.didchange = this.syncPanelsToCollection;
+		this.render();
 	},
 	syncPanelsToCollection: function () {
 		this.$.items.destroyClientControls();
-		console.warn(this.correspondingBeverage, this.controller.models.length)
+		enyo.log(this.correspondingBeverage, this.controller.models.length);
 		enyo.forEach(this.controller.models, function (model) {
 			model.set("correspondingBeverage", this.correspondingBeverage);
 			this.createItemForModel(model);
 		}, this);
-		this.render();
+
+		this.bubble("onSynced");
 	},
 	createItemForModel: function (model) {
 		var item = this.$.items.createComponent({kind: "Coffee.item"});
@@ -51,7 +53,6 @@ enyo.kind({
 	create: function(){
 		this.inherited( arguments );
 		//@TODO: Move to controller
-		userList = this;
 		this.controller.fetch();
 	}
 });
