@@ -1,8 +1,9 @@
 /**
- * 
- * 
+ *
+ *
  */
 (function($){
+	"use strict";
 	var User = Backbone.Model.extend({
 		defaults: {
 			name: 'Klaus',
@@ -10,7 +11,7 @@
 		},
 		idAttribute: "_id", // MongoDB-Style
 		url: function(){
-			return '/users/'+this.get("name")
+			return '/users/'+this.get("name");
 		}
 	});
 
@@ -22,15 +23,15 @@
 		}
 	});
 
-	users = new Users();
+	var users = new Users();
 	var socket = io.connect('/');
 	socket.on('userChanged', function (data) {
 		users.where({name: data.name})[0].set(data);
 	});
 
 	var ItemView = Backbone.View.extend({
-		tagName: 'tr', // name of tag to be created        
-		events: { 
+		tagName: 'tr', // name of tag to be created
+		events: {
 			'click span.delete': 'remove',
 			'click span.clear': 'clear'
 		},
@@ -43,9 +44,8 @@
 		render: function(){
 			var beverages = this.model.get("beverages") || {};
 			var beveragesStr = Object.keys( beverages ).map(function(key){
-				return key + ": " + beverages[key]
+				return key + ": " + beverages[key];
 			}).join(", ");
-			var cost = 0;
 			var cost = Object.keys( beverages )
 				.map(function(key){
 					var beverage = beverageCollection.where({name: key})[0];
@@ -100,7 +100,7 @@
 						$(modal).modal("hide");
 					},
 					error: function(){
-						console.log("error")
+						console.log("error");
 					}
 				});
 			}).one("shown", function(){
