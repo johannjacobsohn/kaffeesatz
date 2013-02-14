@@ -4,11 +4,11 @@ Expected behaviour:
   complete list of all users with all consumed beverages
 - GET /beverages
   list of all available beverages
-- POST /users/{user}/{beverage}
+- POST /users/:user/:beverage
   add beverage to users list
-- POST /users/
+- POST /users/:name
   add user to user list
-- PUT /users/{user}/clear
+- PUT /users/:name/clear
   clear users beverage list
-- DELETE /users/{user}/
+- DELETE /users/:user/
   remove user from user list

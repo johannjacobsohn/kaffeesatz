@@ -6,23 +6,19 @@ var
 	request = require("request"),
 	expect = require('expect.js'),
 	server = require("../server.js"),
-	url = "http://localhost:1234",
-	databaseUrl = "coffeedb",
-	collections = ["beverages", "users"],
-	db = require("mongojs").connect(databaseUrl, collections);
+	url = "http://localhost:1234";
+
 
 describe( "users", function(){
 	describe( "server: GET /users/", function(){
 		it( "returns no users when non have been created", function(done){
-			db.users.drop(function(){
-				request(url+"/users/", function(err, body){
-					expect(body).to.not.be(undefined);
-					var res = JSON.parse(body.body);
-					expect(err).to.be(null);
-					expect(res).to.be.an("array");
-					expect(res).to.be.empty();
-					done();
-				});
+			request(url+"/users/", function(err, body){
+				expect(body).to.not.be(undefined);
+				var res = JSON.parse(body.body);
+				expect(err).to.be(null);
+				expect(res).to.be.an("array");
+				expect(res).to.be.empty();
+				done();
 			});
 		});
 	});
@@ -30,7 +26,7 @@ describe( "users", function(){
 	describe( "server: POST /users/", function(){
 		it( "adds a user", function(done){
 			var o ={
-				uri:url+"/users",
+				uri:url+"/users/Klaus",
 				headers:{'content-type': 'application/x-www-form-urlencoded'},
 				body:require('querystring').stringify( {name: "Klaus"} )
 			};
@@ -53,7 +49,7 @@ describe( "users", function(){
 	describe( "server: POST /users/{user}", function(){
 		it( "adds another user with the same name and triggers an error", function(done){
 			var o ={
-				uri:url+"/users/",
+				uri:url+"/users/Klaus",
 				headers:{'content-type': 'application/x-www-form-urlencoded'},
 				body:require('querystring').stringify( {name: "Klaus"} )
 			};
@@ -111,12 +107,12 @@ describe( "users", function(){
 
 // user.put
 	describe( "server: PUT /users/{{user}}", function(){
-		it( "update a user", function(done){
+		it( "update a user but cannot change the name", function(done){
 			
 			var o = {
 				uri:url+"/users/Klaus",
 				headers:{'content-type': 'application/x-www-form-urlencoded'},
-				body:require('querystring').stringify( {name: "Klaus", beverages: {} } )
+				body:require('querystring').stringify( {name: "Klaus2", beverages: {} } )
 			};
 			request.put(o, function(err, body){
 				expect(err).to.be(null);
@@ -171,10 +167,10 @@ describe( "beverages: ", function(){
 		});
 	});
 
-	describe( "server: POST /beverage/", function(){
+	describe( "server: POST /beverage/Kaffee", function(){
 		it( "adds a beverage", function(done){
 			var o = {
-				uri:url+"/beverages",
+				uri:url+"/beverages/Kaffee",
 				headers:{'content-type': 'application/x-www-form-urlencoded'},
 				body:require('querystring').stringify( {name: "Kaffee", cost: 0.99} )
 			};

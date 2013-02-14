@@ -33,8 +33,10 @@ var users = {
 				db.users.find({name: req.params.user },function(err, user) {
 					if(err){
 						console.error(err);
+						res.end();
+					} else {
+						res.end(JSON.stringify(user[0]));
 					}
-					res.end(JSON.stringify(user[0]));
 				});
 			});
 		},
