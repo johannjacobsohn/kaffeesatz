@@ -1,6 +1,16 @@
+// appfog
 if(process.env.VCAP_SERVICES){
 	var env = JSON.parse(process.env.VCAP_SERVICES);
 	var mongo = env['mongodb-1.8'][0].credentials;
+} else if(process.env.TRAVIS){
+	var mongo = {
+		"hostname":"127.0.0.1",
+		"port":27017,
+		"username":"",
+		"password":"",
+		"name":"coffeedb",
+		"db":"db"
+	};
 } else {
 	var mongo = {
 		"hostname":"localhost",

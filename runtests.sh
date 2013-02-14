@@ -1,2 +1,2 @@
 #/bin/bash
-cd server && mocha
+cd server && npm install && node_modules/.bin/mocha

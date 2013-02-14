@@ -4,11 +4,13 @@
 	"license": "MIT",
 	"dependencies": {
 		"express": "3.x",
+		"mongojs": "*",
+		"socket.io": "*"
+	},
+	 "devDependencies": {
 		"request": "2.x",
-		"mongojs": "",
-		"mocha"  : "",
-		"expect.js": "",
-		"socket.io": ""
+		"mocha": "*",
+		"expect.js": "*"
 	}
 }
 
