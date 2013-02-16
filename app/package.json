@@ -1,14 +1,11 @@
 {
-	"name": "kaffeesatz-server",
+	"name": "kaffeesatz-app",
 	"version": "0.1.0",
 	"license": "MIT",
-	"dependencies": {
-		"express": "3.x",
-		"mongojs": "*",
-		"socket.io": "*"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"request": "2.x",
+		"zombie": "*",
 		"mocha": "*",
 		"expect.js": "*"
 	}

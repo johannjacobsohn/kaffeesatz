@@ -1,0 +1,12 @@
+{
+	"name": "kaffeesatz-admin",
+	"version": "0.1.0",
+	"license": "MIT",
+	"dependencies": {},
+	"devDependencies": {
+		"zombie": "*",
+		"mocha": "*",
+		"expect.js": "*"
+	}
+}
+
