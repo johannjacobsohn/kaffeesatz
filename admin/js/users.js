@@ -22,8 +22,20 @@
 			return user.get('name');
 		}
 	});
+	
+	Users.prototype.create = function(user, events) {
+		var isDupe = this.any(function(_user) { 
+			return _user.get('name') === user.get('name');
+		});
+		if (isDupe || !user.get('name')) {
+			events.error();
+			return false;
+		}
+		Backbone.Collection.prototype.create.apply(this, arguments);
+	}
 
 	var users = new Users();
+
 	var socket = io.connect('/');
 	socket.on('userChanged', function (data) {
 		users.where({name: data.name})[0].set(data);
@@ -72,10 +84,13 @@
 	var UsersView = Backbone.View.extend({
 		el: $('#users-tab'), // el attaches to existing element
 		events: {
-			'click button#add-user': 'addUser'
+			'click button#add-user': 'showAddUser',
+			'submit #user-modal': "addUser",
+			'shown #user-modal': "modalShown",
+			'keyup #user-modal input': "checkUser"
 		},
 		initialize: function(){
-			_.bindAll(this, 'render', 'addUser', 'appendItem'); // every function that uses 'this' as the current object should be in here
+			_.bindAll(this, 'render', 'addUser', 'appendItem', "checkUser"); // every function that uses 'this' as the current object should be in here
 
 			this.collection = users;
 			this.collection.bind('add', this.render); // collection event binder
@@ -83,29 +98,32 @@
 			this.collection.fetch({ success: this.render });
 		},
 		render: function(){
-			var that = this;
 			$("#users").empty();
 			_(this.collection.models).each(function(item){
-				that.appendItem(item);
+				this.appendItem(item);
 			}, this);
 		},
-		addUser: function(){
-			// @TODO: check for unique name
-			var that = this;
-			var modal = $('#user-modal').modal({}).on("submit", function(e){
-				e.preventDefault();
-				var name = $(this).find("input").val();
-				that.collection.create( new User({name:name}), {
-					success: function(){
-						$(modal).modal("hide");
-					},
-					error: function(){
-						console.log("error");
-					}
-				});
-			}).one("shown", function(){
-				$(this).find("input").val("").focus();
+		showAddUser: function(){
+			this.modal = $('#user-modal').modal({})
+		},
+		addUser: function(e){
+			e.preventDefault();
+			var name = $("#user-modal input").val();
+			this.collection.create( new User({name:name}), {
+				success: function(){
+					$(this.modal).modal("hide");
+				}.bind(this),
+				error: function(){
+					console.log("error");
+				}
 			});
+		},
+		modalShown: function(){
+			$("#user-modal input").val("").focus();
+		},
+		checkUser: function(e){
+			var name = $("#user-modal input").val();
+			$("#user-modal .user-exists").toggle( this.collection.where({name:name}).length > 0);
 		},
 		appendItem: function(item){
 			var itemView = new ItemView({

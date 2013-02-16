@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Letsmakesomecoffee: Admin</title>
+		<title>Kaffeesatz</title>
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	</head>
@@ -20,6 +20,23 @@
 			<div id="users-tab" class="tab-pane active">
 				<table class="table table-striped" id="users"></table>
 				<button id='add-user' class="btn help" data-content="Hier können neue Nutzer angelegt werden" data-original-title="Nutzer anlegen"><i class=" icon-plus-sign"></i> Neuer Nutzer</button>
+
+				<!-- Modal -->
+				<form id="user-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h3 id="myModalLabel">Neuen Mitarbeiter anlegen</h3>
+					</div>
+					<div class="modal-body">
+						<input type="text" placeholder="Ein neuer Namen…">
+						<span class="user-exists" style="display: none;">Gibt's schon!</span>
+					</div>
+					<div class="modal-footer">
+						<a data-dismiss="modal" aria-hidden="true" href="#">Close</a>
+						<button class="btn btn-primary">Save changes</button>
+					</div>
+				</form>
+
 			</div>
 			<div id="beverages-tab" class="tab-pane">
 				<table class="table table-striped" id="beverages"></table>
@@ -27,21 +44,6 @@
 			</div>
 		</div>
 
-		<!-- Modal -->
-		<form id="user-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 id="myModalLabel">Neuen Mitarbeiter anlegen</h3>
-			</div>
-			<div class="modal-body">
-				<input type="text" placeholder="Type something…">
-			</div>
-			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-				<button class="btn btn-primary">Save changes</button>
-			</div>
-		</form>
-		
 		<form id="beverage-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -126,6 +128,7 @@
 			}
 		})();
 		</script>
+
 		<script src="js/lib/underscore-min.js"></script>
 		<script src="js/lib/backbone-min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
