@@ -1,158 +1,45 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Kaffeesatz by Satzmedia</title>
+	<head>
+		<meta charset="utf-8">
+		<title>Kaffeesatz by Satzmedia</title>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">Kaffeesatz</h1>
-        <p class="header"></p>
+		<link rel="stylesheet" href="stylesheets/styles.css">
+		<link rel="stylesheet" href="stylesheets/pygment_trac.css">
+		<script src="javascripts/scale.fix.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<!--[if lt IE 9]>
+			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="wrapper">
+			<header>
+				<h1 class="header">Kaffeesatz</h1>
+				<p class="header"></p>
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/Satzmedia/kaffeesatz/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/Satzmedia/kaffeesatz/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/Satzmedia/kaffeesatz">View On GitHub</a></li>
-        </ul>
+				<ul>
+					<li><a class="buttons github" href="https://github.com/Satzmedia/kaffeesatz"><span>Code auf GitHub</span></a></li>
+					<li>
+						<a href="https://travis-ci.org/Satzmedia/kaffeesatz">
+							Build: <img alt="Build Status" src="https://travis-ci.org/Satzmedia/kaffeesatz.png?branch=master">
+						</a>
+					</li>
+				</ul>
+			</header>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/Satzmedia">Satzmedia</a></p>
+			<section>
+				<h2>Die App</h2>
+				<img src="images/app.png" alt="Satzmedia" style="width: 100%">
 
-
-      </header>
-      <section>
-        <h1>Kaffeesatz(media)</h1>
-
-<p>This is just another toy project, comprising a server, an admin interface and an 
-user app.</p>
-
-<pre><code>            Server
-
-User App            Admin Interface
-</code></pre>
-
-<h2>Server</h2>
-
-<p>The server (in /server) serves both the admin interface and the user app 
-(both are static). Its written in <a href="http://nodejs.org/">NodeJS</a> using 
-the <a href="http://expressjs.com/">express framework</a> and offers a REST-Interface and 
-accepts websocket connections (thanks to <a href="http://socket.io/">socket.io</a>).</p>
-
-<p>Data is save to and retrieved from a mongoDB (via 
-<a href="https://github.com/gett/mongojs">mongojs</a>).</p>
-
-<p>At the moment the server does not enforce any type of security or data 
-validation - in fact it does get corrupted easily. Its covered by 
-<a href="http://visionmedia.github.com/mocha/">mocha</a> tests (see /server/tests) and 
-is hosted at <a href="https://www.appfog.com/">appfog</a>.</p>
-
-<p>I has its own readme file at <a href="/tree/master/server/readme.md">/server/readme.md</a>.</p>
-
-<h2>Admin Interface</h2>
-
-<p>The administration is written with <a href="http://backbonejs.org/">backbone.js</a> and 
-<a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>. </p>
-
-<p>I has its own readme file at <a href="/tree/master/admin/readme.md">/admin/readme.md</a>.</p>
-
-<h2>User App</h2>
-
-<p>The user app is an <a href="http://www.enyojs.com/">enyo-app</a> using the very new and 
-exciting <a href="https://github.com/enyojs/mvc">mvc-plugin</a>. It's directly derived 
-from the <a href="https://github.com/enyojs/bootplate-mvc">Bootplate-MVC-App</a>.</p>
-
-<p>I has its own readme file at <a href="/tree/master/app/readme.md">/app/readme.md</a>.</p>
-
-<h2>Goals</h2>
-
-<p>This project aims to:</p>
-
-<ul>
-<li>have a good test coverage</li>
-<li>have some server/client code sharing</li>
-<li>nice interface</li>
-<li>good documentation</li>
-<li>to feature on screen guidance for both app and admin section</li>
-<li>be installable on ios &amp; firefox</li>
-</ul><h2>Design Mockups:</h2>
-
-<pre><code>wide:                            narrow:
-_____________________________    ________________
-| Lets make some Coffee! (?)|    |    Lmsc!  (?)|
-|---------------------------|    |--------------|
-|                           |    |              |
-| coffee         tee        |    | coffee       |
-| ------         ------     |    | ------       |
-| Paul: II       Paul:      |    | Paul: II     |
-| Mary: I        Mary:      |    | Mary: I      |
-| Pete: III      Pete:      |    | Pete: III    |
-|                           |    |              |
-| milk           cappuccino |    | milk         |
-| ----           ---------- |    | ----         |
-| Paul: II       Paul:      |    | Paul: II     |
-| Mary: I        Mary:      |    | Mary: I      |
-| Pete: III      Pete:      |    | Pete: III    |
-|___________________________|    |     ...      |
-                                 |______________|
-</code></pre>
-
-<h2>Setup</h2>
-
-<pre><code>git clone https://github.com/Satzmedia/kaffeesatz
-cd kaffeesatz
-git submodule update --init --recursive
-</code></pre>
-
-<h2>TODO</h2>
-
-<ul>
-<li>server
-
-<ul>
-<li>fix Unit tests</li>
-<li>write (and test) socket API</li>
-<li>write readme.md</li>
-<li>clean up</li>
-</ul>
-</li>
-<li>admin interface
-
-<ul>
-<li>finisch On-Screen help</li>
-<li>edit beverages</li>
-<li>write readme.md</li>
-<li>add unit tests</li>
-<li>clean up</li>
-</ul>
-</li>
-<li>app
-
-<ul>
-<li>add On-Screen guidance</li>
-<li>add firefox/ios install button</li>
-<li>write readme.md</li>
-<li>add unit tests</li>
-<li>clean up</li>
-</ul>
-</li>
-</ul><h2>Credits:</h2>
-
-<p>App Icon: <a href="http://www.clker.com/clipart-hot-coffee.html">http://www.clker.com/clipart-hot-coffee.html</a></p>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
-  </body>
+				<h2>Die Administration</h2>
+				<img src="images/admin.png" alt="Satzmedia" style="width: 100%">
+			</section>
+			<footer>
+				<p>Ein Projekt von <a class="header name" href="https://github.com/Satzmedia"><img src="images/satzmedia.png" alt="Satzmedia"></a>.</p>
+				<p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+			</footer>
+		</div>
+		<!--[if !IE]><script>fixScale(document);</script><![endif]-->
+	</body>
 </html>
