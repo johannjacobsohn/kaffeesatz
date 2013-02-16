@@ -25,8 +25,7 @@ Data is save to and retrieved from a mongoDB (via
 
 At the moment the server does not enforce any type of security or data 
 validation - in fact it does get corrupted easily. Its covered by 
-[mocha](http://visionmedia.github.com/mocha/) tests (see /server/tests) and 
-is hosted at [appfog](https://www.appfog.com/).
+[mocha](http://visionmedia.github.com/mocha/) tests (see /server/tests) and hosted at [appfog](https://www.appfog.com/).
 
 I has its own readme file at [/server/readme.md](/tree/master/server/readme.md).
 
@@ -89,6 +88,9 @@ Design Mockups:
 Setup
 -----
 
+MongoDB, NodeJS 
+
+
     git clone https://github.com/Satzmedia/kaffeesatz
     cd kaffeesatz
     git submodule update --init --recursive
@@ -102,18 +104,20 @@ TODO
  - write readme.md
  - clean up
 - admin interface
+ - add keyboard navigation
  - finisch On-Screen help
  - edit beverages
  - write readme.md
  - add unit tests
  - clean up
 - app
- - add On-Screen guidance
- - add firefox/ios install button
+ - improve small screen display
+ - add firefox/ios install button / autoinstall
  - write readme.md
  - add unit tests
  - clean up
-
+- misc
+ - write product page
 
 Credits:
 ---
