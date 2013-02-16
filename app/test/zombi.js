@@ -12,9 +12,9 @@ describe("initial state", function() {
 		p.then(function () {
 			expect( browser.query(".user-row") ).to.be(undefined);
 			expect( browser.query(".beverage") ).to.be(undefined);
-
-			done();
-		});
+		})
+		.then(done, done);
+		
 	});
 });
 
@@ -38,6 +38,7 @@ describe("once a beverage and a user have been added", function() {
 					done();
 				}, 200);
 			});
-		});
+		})
+		.then(done, done);
 	});
 });
