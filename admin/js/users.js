@@ -63,7 +63,7 @@
 					var beverage = beverageCollection.where({name: key})[0];
 					return beverage ? beverage.get("price")*beverages[key] : 0; })
 				.reduce( function(a, b){ return a+b; }, 0);
-			var userTemplate = _.template( $("#user_template").html(), {name: this.model.get('name'), beverages: beveragesStr, cost: cost} );
+			var userTemplate = _.template( $("#user_template").html(), {name: this.model.get('name'), beverages: beveragesStr, cost: formatNumber(cost) } );
 			$(this.el).html( userTemplate );
 			return this; // for chainable calls, like .render().el
 		},
