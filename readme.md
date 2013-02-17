@@ -88,12 +88,32 @@ Design Mockups:
 Setup
 -----
 
-MongoDB, NodeJS 
+1. Checkout
 
+        git clone https://github.com/Satzmedia/kaffeesatz
+        cd kaffeesatz
+        git submodule update --init --recursive
 
-    git clone https://github.com/Satzmedia/kaffeesatz
-    cd kaffeesatz
-    git submodule update --init --recursive
+2. Installation prerequisites
+    - [MongoDB](http://docs.mongodb.org/manual/installation/)
+    - [NodeJS](http://nodejs.org/download/)
+
+3. Run tests
+
+        ./runtests.sh
+
+3. Install node modules
+
+        cd server && npm install && cd -
+
+3. Start database and run server
+
+        mongod
+        node server/server.js
+
+4. Open App
+    - App at [http://localhost:1234/app/debug.html](http://localhost:1234/app/debug.html)
+    - Admin interface at [http://localhost:1234/app/](http://localhost:1234/app/)
 
 TODO
 ---------
