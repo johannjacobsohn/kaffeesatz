@@ -99,7 +99,7 @@ TODO
 ---------
 
 - server
- - fix Unit tests
+ - <del>fix Unit tests</del>
  - write (and test) socket API
  - write readme.md
  - clean up
@@ -107,16 +107,22 @@ TODO
  - add keyboard navigation
  - finisch On-Screen help
  - edit beverages
+ - <del>help to set price and validate</del>
  - write readme.md
  - add unit tests
+ - check connection status
  - clean up
 - app
  - improve small screen display
  - add firefox/ios install button / autoinstall
  - write readme.md
  - add unit tests
+ - check connection status
+ - reload on server/manifest change
  - clean up
 - misc
+ - <del>Travis CI</del>
+ - share models, collections and validation
  - write product page
 
 Credits:
