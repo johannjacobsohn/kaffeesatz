@@ -15,7 +15,7 @@
 		}
 	});
 
-	var Users = Backbone.Collection.extend({
+	var UserCollection = Backbone.Collection.extend({
 		model: User,
 		url: '/users',
 		comparator: function(user){
@@ -23,7 +23,7 @@
 		}
 	});
 	
-	Users.prototype.create = function(user, events) {
+	UserCollection.prototype.create = function(user, events) {
 		var isDupe = this.any(function(_user) { 
 			return _user.get('name') === user.get('name');
 		});
@@ -34,18 +34,18 @@
 		Backbone.Collection.prototype.create.apply(this, arguments);
 	}
 
-	var users = new Users();
+	var users = new UserCollection();
 
 	var socket = io.connect('/');
 	socket.on('userChanged', function (data) {
 		users.where({name: data.name})[0].set(data);
 	});
 
-	var ItemView = Backbone.View.extend({
+	var UserView = Backbone.View.extend({
 		tagName: 'tr', // name of tag to be created
 		events: {
-			'click span.delete': 'remove',
-			'click span.clear': 'clear'
+			'click .delete': 'remove',
+			'click .clear': 'clear'
 		},
 		initialize: function(){
 			_.bindAll(this, 'render', 'unrender', 'clear', 'remove'); // every function that uses 'this' as the current object should be in here
@@ -90,7 +90,7 @@
 			'keyup #user-modal input': "checkUser"
 		},
 		initialize: function(){
-			_.bindAll(this, 'render', 'addUser', 'appendItem', "checkUser"); // every function that uses 'this' as the current object should be in here
+			_.bindAll(this, 'render', 'addUser', 'appendUser', "checkUser"); // every function that uses 'this' as the current object should be in here
 
 			this.collection = users;
 			this.collection.bind('add', this.render); // collection event binder
@@ -100,7 +100,7 @@
 		render: function(){
 			$("#users").empty();
 			_(this.collection.models).each(function(item){
-				this.appendItem(item);
+				this.appendUser(item);
 			}, this);
 		},
 		showAddUser: function(){
@@ -125,8 +125,8 @@
 			var name = $("#user-modal input").val();
 			$("#user-modal .user-exists").toggle( this.collection.where({name:name}).length > 0);
 		},
-		appendItem: function(item){
-			var itemView = new ItemView({
+		appendUser: function(item){
+			var itemView = new UserView({
 				model: item
 			});
 			$('#users', this.el).append(itemView.render().el);
