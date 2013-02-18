@@ -1,8 +1,8 @@
 Kaffeesatz(media)
 =================
 
-This is just another toy project, comprising a server, an admin interface and an 
-user app.
+This is just another toy project, comprising a server, an admin interface 
+and an user app.
 
 
                 Server
@@ -16,8 +16,8 @@ Server
 ------
 
 The server (in /server) serves both the admin interface and the user app 
-(both are static). Its written in [NodeJS](http://nodejs.org/) using 
-the [express framework](http://expressjs.com/) and offers a REST-Interface and 
+(both are static). Its written in [NodeJS](http://nodejs.org/) using the 
+[express framework](http://expressjs.com/) and offers a REST-Interface and 
 accepts websocket connections (thanks to [socket.io](http://socket.io/)).
 
 Data is save to and retrieved from a mongoDB (via 
@@ -25,7 +25,8 @@ Data is save to and retrieved from a mongoDB (via
 
 At the moment the server does not enforce any type of security or data 
 validation - in fact it does get corrupted easily. Its covered by 
-[mocha](http://visionmedia.github.com/mocha/) tests (see /server/tests) and hosted at [appfog](https://www.appfog.com/).
+[mocha](http://visionmedia.github.com/mocha/) tests (see /server/tests) and 
+hosted at [appfog](https://www.appfog.com/).
 
 I has its own readme file at [/server/readme.md](/tree/master/server/readme.md).
 
@@ -88,30 +89,26 @@ Design Mockups:
 Setup
 -----
 
-1. Checkout
+1. Checkout & Setup
 
         git clone https://github.com/Satzmedia/kaffeesatz
         cd kaffeesatz
-        git submodule update --init --recursive
+        make setup
 
-2. Installation prerequisites
+2. Install prerequisites
     - [MongoDB](http://docs.mongodb.org/manual/installation/)
     - [NodeJS](http://nodejs.org/download/)
 
-3. Run tests
+3. (optional) Run tests
 
-        ./runtests.sh
+        make test
 
-3. Install node modules
-
-        cd server && npm install && cd -
-
-3. Start database and run server
+4. Start database and run server
 
         mongod
-        node server/server.js
+        node app.js
 
-4. Open App
+5. Open App
     - App at [http://localhost:1234/app/debug.html](http://localhost:1234/app/debug.html)
     - Admin interface at [http://localhost:1234/app/](http://localhost:1234/app/)
 
@@ -144,6 +141,7 @@ TODO
  - <del>Travis CI</del>
  - share models, collections and validation
  - write product page
+ - https://github.com/Lapple/ErrorBoard
 
 Credits:
 ---
