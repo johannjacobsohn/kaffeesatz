@@ -6,7 +6,8 @@
 	"devDependencies": {
 		"zombie": "*",
 		"mocha": "*",
-		"expect.js": "*"
+		"expect.js": "*",
+		"jshint": "*"
 	}
 }
 

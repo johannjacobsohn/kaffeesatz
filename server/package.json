@@ -10,7 +10,8 @@
 	"devDependencies": {
 		"request": "2.x",
 		"mocha": "*",
-		"expect.js": "*"
+		"expect.js": "*",
+		"jshint": "*"
 	}
 }
 

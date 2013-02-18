@@ -8,6 +8,6 @@ test:
 	node_modules/.bin/mocha
 
 jshint:
-	jshint .
+	node_modules/.bin/jshint .
 
 .PHONY: test
