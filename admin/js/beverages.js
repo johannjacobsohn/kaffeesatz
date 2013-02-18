@@ -9,6 +9,7 @@
 		},
 		idAttribute: "_id", // MongoDB-Style
 		url: function(){
+			"use strict";
 			return '/beverages/'+this.get("name");
 		}
 	});
@@ -17,12 +18,14 @@
 		model: Beverage,
 		url: '/beverages',
 		comparator: function(beverage){
+			"use strict";
 			return beverage.get('name');
 		}
 	});
 	
 	Beverages.prototype.create = function(beverage, events) {
-		var isDupe = this.any(function(_beverage) { 
+		"use strict";
+		var isDupe = this.any(function(_beverage) {
 			return _beverage.get('name') === beverage.get('name');
 		});
 		if ( isDupe || !beverage.get('name') || isNaN(beverage.get('price')) ) {
@@ -30,7 +33,7 @@
 			return false;
 		}
 		Backbone.Collection.prototype.create.apply(this, arguments);
-	}
+	};
 
 	var beverageCollection = new Beverages();
 	
@@ -89,7 +92,7 @@
 			}, this);
 		},
 		showAddBeverage: function(){
-			this.modal = $('#beverage-modal').modal({})
+			this.modal = $('#beverage-modal').modal({});
 		},
 		addBeverage: function(e){
 			e.preventDefault();
@@ -98,10 +101,7 @@
 			this.collection.create( new Beverage({name:name, price:price}), {
 				success: function(){
 					$(this.modal).modal("hide");
-				}.bind(this),
-				error: function(){
-					console.log("error");
-				}
+				}.bind(this)
 			});
 		},
 		modalShown: function(){
@@ -124,13 +124,13 @@
 			return parseFloat(n);
 		},
 		/*
-		 * Zahlen in einen String formieren,
-		 * der zwei (oder precision) Nachkommastellen hat 
-		 * und Komma als Dezimaltrennzeichen verwendet (nach SI)
-		 *
-		 * @TODO: Tests für andere Präzision
-		 * @example:
-			formatNumberTest = function(){
+		* Zahlen in einen String formieren,
+		* der zwei (oder precision) Nachkommastellen hat
+		* und Komma als Dezimaltrennzeichen verwendet (nach SI)
+		*
+		* @TODO: Tests für andere Präzision
+		* @example:
+				formatNumberTest = function(){
 				console.assert(formatNumber(07) === "7,00", "Führende Null");
 				console.assert(formatNumber(121212128.1212121212) === "121212128,12", "Lange Zahl");
 				console.assert(formatNumber("8,23") === "8,23", "String im korrekten Format");
@@ -142,10 +142,10 @@
 				console.assert((formatNumber("test").toString() === "NaN"), "Nicht parsebare Zahl sollte NaN zurückgeben");
 			}
 			formatNumberTest()
-		 * @param             n die zu formatierende Zahl - kann String, Int oder Float sein
-		 * @param  {{int}}    precision (optional) - Anzahl an Nachkommastellen, voreingestellt sind 2 
-		 * @return {{string}} der formatierte String
-		 */
+		* @param             n die zu formatierende Zahl - kann String, Int oder Float sein
+		* @param  {{int}}    precision (optional) - Anzahl an Nachkommastellen, voreingestellt sind 2
+		* @return {{string}} der formatierte String
+		*/
 		formatNumber: function(n, precision){
 			precision = precision || 2;
 			var p = Math.pow(10, precision);

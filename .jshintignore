@@ -6,3 +6,5 @@ admin/test
 app/test
 app/build/
 admin/js/lib
+app/node_modules/
+admin/node_modules/

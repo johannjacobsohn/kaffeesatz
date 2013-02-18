@@ -1,6 +1,6 @@
 /*
  * MongoDB configuration
- * 
+ *
  */
  
 // Default configuration

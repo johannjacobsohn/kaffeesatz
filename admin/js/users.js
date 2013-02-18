@@ -24,7 +24,7 @@
 	});
 	
 	UserCollection.prototype.create = function(user, events) {
-		var isDupe = this.any(function(_user) { 
+		var isDupe = this.any(function(_user) {
 			return _user.get('name') === user.get('name');
 		});
 		if (isDupe || !user.get('name')) {
@@ -32,7 +32,7 @@
 			return false;
 		}
 		Backbone.Collection.prototype.create.apply(this, arguments);
-	}
+	};
 
 	var users = new UserCollection();
 
@@ -72,8 +72,8 @@
 		},
 		clear: function(){
 			this.model.save({"beverages": {}}, {
-				success: function() { console.log("success"); },
-				error  : function() { console.log("error");   }
+				success: function() {},
+				error  : function() {}
 			});
 		},
 		remove: function(){
@@ -104,7 +104,7 @@
 			}, this);
 		},
 		showAddUser: function(){
-			this.modal = $('#user-modal').modal({})
+			this.modal = $('#user-modal').modal({});
 		},
 		addUser: function(e){
 			e.preventDefault();
@@ -112,10 +112,7 @@
 			this.collection.create( new User({name:name}), {
 				success: function(){
 					$(this.modal).modal("hide");
-				}.bind(this),
-				error: function(){
-					console.log("error");
-				}
+				}.bind(this)
 			});
 		},
 		modalShown: function(){

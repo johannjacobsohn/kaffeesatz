@@ -44,6 +44,6 @@
 	"jquery" : true, // Enable globals exposed by jQuery JavaScript library.
 
 	"predef" : [
-		"enyo", "Backbone", "io", "_"
+		"Backbone", "io", "_", "alert", "formatNumber", "beverageCollection"
 	]
 }
