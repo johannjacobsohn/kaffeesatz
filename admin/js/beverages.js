@@ -1,5 +1,7 @@
 /**
  * Beverages
+ * 
+ * @TODO: share parseNumber?
  *
  */
 	var Beverage = Backbone.Model.extend({
@@ -28,8 +30,7 @@
 		var isDupe = this.any(function(_beverage) {
 			return _beverage.get('name') === beverage.get('name');
 		});
-		if ( isDupe || !beverage.get('name') || isNaN(beverage.get('price')) ) {
-			events.error();
+		if ( isDupe || !beverage.get('name') || isNaN(beverage.get('price'))  ) { // || beverage.get('price') < 0 ) {
 			return false;
 		}
 		Backbone.Collection.prototype.create.apply(this, arguments);
@@ -44,7 +45,10 @@
 		tagName: 'tr',
 		events: {
 			'click .delete'    : 'remove',
-			'click .set-price' : 'setPrice'
+			'click .set-price' : 'setPrice',
+			'dblclick' : "editBeverage",
+			'click .edit' : "editBeverage",
+			'submit form': "changeBeverage"
 		},
 		initialize: function(){
 			_.bindAll(this, 'render', 'unrender', 'setPrice', 'remove'); // every function that uses 'this' as the current object should be in here
@@ -60,22 +64,36 @@
 		unrender: function(){
 			$(this.el).remove();
 		},
-		setPrice: function(price){
-			this.model.save({price: price});
+		editBeverage: function(event){
+			console.log(arguments)
+			$(event.target).closest("tr").find(".current-price, form").toggle();
 		},
-		remove: function(){
+		changeBeverage: function(e){
+			e.preventDefault();
+			var $form = $(e.target);
+			var newPrice = $form.find("input").val();
+			this.setPrice(newPrice);
+		},
+		setPrice: function(price){
+			this.model.save({price: this.parseNumber(price) });
+		},
+		remove: function(e){
+			e.preventDefault();
 			this.model.destroy();
+		},
+		parseNumber: function(n){
+			n = n.toString().replace(",", ".");
+			return parseFloat(n);
 		}
 	});
 
 	var BeveragesView = Backbone.View.extend({
 		el: $('#beverages-tab'), // el attaches to existing element
 		events: {
-			'click button#add-beverage': 'showAddBeverage',
-			'submit #beverage-modal': "addBeverage",
-			'show #beverage-modal': "modalShown",
-			'keyup #beverage-modal input.name': "checkBeverage",
-			'keyup #beverage-modal input.price': "checkPrice"
+			'submit #add-beverage': "addBeverage",
+			'show a[href=#add-beverage]': "modalShown",
+			'keyup #add-beverage input.name': "checkBeverage",
+			'keyup input.price': "checkPrice"
 		},
 		initialize: function(){
 			_.bindAll(this, 'render', 'addBeverage', 'appendBeverage'); // every function that uses 'this' as the current object should be in here
@@ -91,73 +109,46 @@
 				this.appendBeverage(item);
 			}, this);
 		},
-		showAddBeverage: function(){
-			this.modal = $('#beverage-modal').modal({});
-		},
 		addBeverage: function(e){
 			e.preventDefault();
-			var name = $("#beverage-modal input.name").val();
-			var price = this.parseNumber( $("#beverage-modal input.price").val() );
+			var name = $("#add-beverage input.name").val();
+			var price = this.parseNumber( $("#add-beverage input.price").val() || 0 );
 			this.collection.create( new Beverage({name:name, price:price}), {
 				success: function(){
-					$(this.modal).modal("hide");
+					$("#add-beverage input.price").val("");
+					$("#add-beverage input.name").val("").focus();
+					$(".help-inline").hide();
+					var $added = $("#add-beverage .added");
+					$added.show();
+					setTimeout($added.hide.bind($added), 3000)
 				}.bind(this)
 			});
 		},
 		modalShown: function(){
-			var $beverageModal = $("#beverage-modal");
+			var $beverageModal = $("#add-beverage");
 			$beverageModal.find(".price-nan").hide();
 			$beverageModal.find("input.price, input.name").val("").focus();
 		},
 		checkBeverage: function(e){
-			var name = $("#beverage-modal input.name").val();
-			$("#beverage-modal .beverage-exists").toggle( this.collection.where({name:name}).length > 0);
+			var name = $("#add-beverage input.name").val();
+			$("#add-beverage .beverage-exists").toggle( this.collection.where({name:name}).length > 0);
 		},
 		checkPrice: function(e){
-			var price = this.parseNumber( $("#beverage-modal input.price").val() || 0 );
+			var $input = $(e.target);
+			var $form = $input.closest("form");
+			var price = this.parseNumber( $input.val() || 0 );
 			var isParsable = !isNaN( price );
-			$("#beverage-modal .price-nan").toggle( !isParsable );
-			$("#beverage-modal .parsedPrice").toggle( isParsable ).find(".price").text( this.formatNumber(price) );
+			$form.find(".price-nan").toggle( !isParsable );
+			$form.find(".price-isnegative").toggle( isParsable && price < 0 );
+			$form.find(".price-isfree").toggle( isParsable && price === 0 );
+			$form.find(".parsedPrice").toggle( isParsable && price > 0 ).find(".price").text( formatNumber(price) );
 		},
 		parseNumber: function(n){
 			n = n.toString().replace(",", ".");
 			return parseFloat(n);
 		},
-		/*
-		* Zahlen in einen String formieren,
-		* der zwei (oder precision) Nachkommastellen hat
-		* und Komma als Dezimaltrennzeichen verwendet (nach SI)
-		*
-		* @TODO: Tests für andere Präzision
-		* @example:
-				formatNumberTest = function(){
-				console.assert(formatNumber(07) === "7,00", "Führende Null");
-				console.assert(formatNumber(121212128.1212121212) === "121212128,12", "Lange Zahl");
-				console.assert(formatNumber("8,23") === "8,23", "String im korrekten Format");
-				console.assert(formatNumber("8.235") === "8,24", "korrektes aufrunden");
-				console.assert(formatNumber("8.234") === "8,23", "korrektes abrunden");
-				console.assert(formatNumber("8") === "8,00", "Ganze Zahl als String");
-				console.assert(formatNumber(0) === "0,00", "Null als Int");
-				console.assert((formatNumber()).toString() === "0,00", "Kein Argument sollte 0,00 zurückgeben");
-				console.assert((formatNumber("test").toString() === "NaN"), "Nicht parsebare Zahl sollte NaN zurückgeben");
-			}
-			formatNumberTest()
-		* @param             n die zu formatierende Zahl - kann String, Int oder Float sein
-		* @param  {{int}}    precision (optional) - Anzahl an Nachkommastellen, voreingestellt sind 2
-		* @return {{string}} der formatierte String
-		*/
-		formatNumber: function(n, precision){
-			precision = precision || 2;
-			var p = Math.pow(10, precision);
-			n = n || 0; // Test "Kein Argument sollte 0,00 zurückgeben; "
-			n = parseFloat(n.toString().replace(",",".")); // Test "String im korrekten Format"
-			n = Math.round(n * p)/p;
-			return n.toFixed( precision ).toString().replace(".",",");
-		},
 		appendBeverage: function(item){
-			var beverageView = new BeverageView({
-				model: item
-			});
+			var beverageView = new BeverageView( {model: item} );
 			$('#beverages', this.el).append(beverageView.render().el);
 		}
 	});

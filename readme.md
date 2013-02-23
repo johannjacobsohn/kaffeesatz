@@ -121,9 +121,8 @@ TODO
  - write readme.md
  - clean up
 - admin interface
- - add keyboard navigation
  - finisch On-Screen help
- - edit beverages
+ - <del>edit beverages</del>
  - <del>help to set price and validate</del>
  - write readme.md
  - add unit tests
