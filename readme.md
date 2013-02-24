@@ -140,7 +140,7 @@ TODO
  - <del>Travis CI</del>
  - share models, collections and validation
  - write product page
- - https://github.com/Lapple/ErrorBoard
+ - <del>Track errors with https://github.com/Lapple/ErrorBoard</del>
 
 Credits:
 ---
