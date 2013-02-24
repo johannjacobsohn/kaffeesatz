@@ -121,12 +121,11 @@ TODO
  - write readme.md
  - clean up
 - admin interface
- - finisch On-Screen help
+ - <del>finisch On-Screen help</del>
  - <del>edit beverages</del>
  - <del>help to set price and validate</del>
  - write readme.md
  - add unit tests
- - check connection status
  - clean up
 - app
  - improve small screen display

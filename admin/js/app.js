@@ -3,8 +3,7 @@
 	var showing = false;
 	$(".show-help").click(function(e){
 		e.preventDefault();
-		$(".help").popover( showing ? "hide" : "show" );
-		showing = !showing;
+		$(".help").popover( (showing = !showing) ? "show" : "hide" );
 	});
 }());
 

@@ -10,7 +10,17 @@
 	</head>
 	<body>
 		<div class="page-header">
-			<a data-placement="bottom" data-content="Diese App kann auf dem Computer installiert werden" data-toggle="popover" class="btn btn-large help pull-right install-app" href="#" data-original-title="App installieren" style="position: absolute; right: 4px;"><i class="icon-download"></i> Installieren</a>
+			<span class="install-app pull-right">
+				<a
+					data-placement="left"
+					data-trigger="manual"
+					data-original-title="App installieren"
+					data-content="Diese App kann auf dem Computer installiert werden"
+					class="btn btn-large help"
+					href="#"
+					style="position: absolute; right: 4px;"
+				><i class="icon-download"></i> Installieren</a>
+			</span>
 			<h1 style="text-align: center;"><img src="img/kaffeesatzmedia.png" alt="Kaffeesatz" style="height: 60px;"> <a class="btn show-help" style="position:fixed; bottom: 0; right:0;">?</a></h1>
 		</div>
 
@@ -21,7 +31,13 @@
 						<a href="#users-list-tab" data-toggle="tab">Leude</a>
 					</li>
 					<li>
-						<a href="#add-user" data-toggle="tab"><i class=" icon-plus-sign"></i> Noch einen</a>
+						<a href="#add-user" data-toggle="tab"
+							data-placement="top"
+							data-trigger="manual"
+							data-original-title="Mehr Nutzer"
+							data-content="Hier weitere Personen hinzufügen"
+							class="help"
+							><i class=" icon-plus-sign"></i> Noch einen</a>
 					</li>
 				</ul>
 				<div class="tab-content">
@@ -51,7 +67,12 @@
 						<a href="#beverage-list-tab" data-toggle="tab">Getränke</a>
 					</li>
 					<li>
-						<a href="#add-beverage" data-toggle="tab"><i class="icon-plus-sign"></i> Noch eins</a>
+						<a href="#add-beverage" data-toggle="tab"
+							data-placement="left"
+							data-trigger="manual"
+							data-original-title="Mehr Getränke hinzufügen"
+							data-content="Hier ein weiteres Produkt anlegen"
+							class="help"><i class="icon-plus-sign"></i> Noch eins</a>
 					</li>
 				</ul>
 				<div class="tab-content">
