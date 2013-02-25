@@ -125,13 +125,13 @@ TODO
  - <del>edit beverages</del>
  - <del>help to set price and validate</del>
  - write readme.md
- - add unit tests
+ - <del>add tests</del>
  - clean up
 - app
  - improve small screen display
  - add firefox/ios install button / autoinstall
  - write readme.md
- - add unit tests
+ - add tests
  - check connection status
  - reload on server/manifest change
  - clean up
