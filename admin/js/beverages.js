@@ -45,13 +45,12 @@
 		tagName: 'tr',
 		events: {
 			'click .delete'    : 'remove',
-			'click .set-price' : 'setPrice',
 			'dblclick' : "editBeverage",
 			'click .edit' : "editBeverage",
 			'submit form': "changeBeverage"
 		},
 		initialize: function(){
-			_.bindAll(this, 'render', 'unrender', 'setPrice', 'remove'); // every function that uses 'this' as the current object should be in here
+			_.bindAll(this, 'render', 'unrender', 'remove'); // every function that uses 'this' as the current object should be in here
 
 			this.model.bind('change', this.render);
 			this.model.bind('remove', this.unrender);
@@ -72,10 +71,7 @@
 			e.preventDefault();
 			var $form = $(e.target);
 			var newPrice = $form.find("input").val();
-			this.setPrice(newPrice);
-		},
-		setPrice: function(price){
-			this.model.save({price: this.parseNumber(price) });
+			this.model.save({price: this.parseNumber(newPrice) });
 		},
 		remove: function(e){
 			e.preventDefault();
