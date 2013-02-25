@@ -19,7 +19,6 @@ enyo.kind({
 	setupItem: function(inSender, inEvent) {
 		var index = inEvent.index;
 		var item = inEvent.item.$.mark;
-		
 		var scale = this.bgHeight/125;
 
 		item.applyStyle("float", 'left');

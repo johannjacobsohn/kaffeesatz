@@ -24,7 +24,7 @@
 			return beverage.get('name');
 		}
 	});
-	
+
 	Beverages.prototype.create = function(beverage, events) {
 		"use strict";
 		var isDupe = this.any(function(_beverage) {
@@ -37,7 +37,7 @@
 	};
 
 	var beverageCollection = new Beverages();
-	
+
 (function($){
 	"use strict";
 
@@ -64,7 +64,6 @@
 			$(this.el).remove();
 		},
 		editBeverage: function(event){
-			console.log(arguments)
 			$(event.target).closest("tr").find(".current-price, form").toggle();
 		},
 		changeBeverage: function(e){
@@ -116,7 +115,7 @@
 					$(".help-inline").hide();
 					var $added = $("#add-beverage .added");
 					$added.show();
-					setTimeout($added.hide.bind($added), 3000)
+					setTimeout($added.hide.bind($added), 3000);
 				}.bind(this)
 			});
 		},

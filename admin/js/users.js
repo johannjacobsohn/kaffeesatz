@@ -2,6 +2,7 @@
  * Users
  *
  */
+ /*global beverageCollection:false */
 (function($){
 	"use strict";
 	var User = Backbone.Model.extend({
@@ -22,7 +23,7 @@
 			return user.get('name');
 		}
 	});
-	
+
 	UserCollection.prototype.create = function(user, events) {
 		var isDupe = this.any(function(_user) {
 			return _user.get('name') === user.get('name');
@@ -110,7 +111,7 @@
 					$(".help-inline").hide();
 					var $added = $("#add-user .added");
 					$added.show();
-					setTimeout($added.hide.bind($added), 3000)
+					setTimeout($added.hide.bind($added), 3000);
 				}.bind(this)
 			});
 		},
