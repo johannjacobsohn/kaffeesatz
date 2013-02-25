@@ -9,10 +9,9 @@
 
 // Log errors with ErrorBoard (https://github.com/Lapple/ErrorBoard)
 window.onerror = function( errorMsg, url, lineNumber ) {
-  var e = encodeURIComponent;
-  ( new Image() ).src = url+'/pusherror/?message=' + e( errorMsg ) +
-                                                        '&url='     + e( url ) +
-                                                        '&line='    + e( lineNumber );
+	"use strict";
+	var e = encodeURIComponent;
+	( new Image() ).src = "http://errorboard.eu01.aws.af.cm"+'/pusherror/?message=' + e( errorMsg ) + '&url=' + e( url ) + '&line=' + e( lineNumber );
 };
 
 ;(function(){
@@ -65,7 +64,7 @@ window.onerror = function( errorMsg, url, lineNumber ) {
  * @param  {{int}}    precision (optional) - Anzahl an Nachkommastellen, voreingestellt sind 2
  * @return {{string}} der formatierte String
  */
-var formatNumber = function(n, precision){
+function formatNumber(n, precision){
 	"use strict";
 	precision = precision || 2;
 	var p = Math.pow(10, precision);
@@ -73,4 +72,4 @@ var formatNumber = function(n, precision){
 	n = parseFloat(n.toString().replace(",",".")); // Test "String im korrekten Format"
 	n = Math.round(n * p)/p;
 	return n.toFixed( precision ).toString().replace(".",",");
-};
+}
