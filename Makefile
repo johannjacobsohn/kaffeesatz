@@ -15,10 +15,10 @@ test:
 
 	mongo $(KAFFEESATZTESTDB) --eval "db.dropDatabase()"
 
-jshint: 
-	$(MAKE) jshint -C server
-	$(MAKE) jshint -C admin
-	$(MAKE) jshint -C app
+lint: 
+	$(MAKE) lint -C server
+	$(MAKE) lint -C admin
+	$(MAKE) lint -C app
 
 deploy:
 	af update

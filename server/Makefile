@@ -4,7 +4,7 @@ setup:
 test:
 	node_modules/.bin/mocha
 
-jshint:
+lint:
 	node_modules/.bin/jshint .
 
 .PHONY: test

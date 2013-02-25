@@ -9,7 +9,7 @@ test:
 	tools/minify.sh
 	node_modules/.bin/mocha
 
-jshint:
+lint:
 	node_modules/.bin/jshint .
 
 .PHONY: test
