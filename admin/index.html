@@ -113,8 +113,8 @@
 		<script type="text/template" id="user_template">
 			<td class="name"><%= name %></td>
 			<td class="beverages"><%= beverages %></td>
-			<td class="cost"><span class="badge"><%= cost %>€</span></td>
-			<td class="input-append input-prepend">
+			<td class="cost" style="text-align: right;"><span class="badge"><%= cost %>€</span></td>
+			<td class="input-append input-prepend" style="text-align: right; width: 20px"> <!-- intentionally to small to only take up as much space as possible needed -->
 				<a class="clear btn btn-success btn-mini" href="#"><i class="icon-ok"></i> Hat bezahlt</a>
 				<a class="delete btn btn-danger btn-mini" href="#">&times;</a>
 			</td>
