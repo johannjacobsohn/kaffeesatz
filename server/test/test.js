@@ -6,7 +6,7 @@ var
 	request = require("request"),
 	expect = require('expect.js'),
 	server = require("../server.js"),
-	url = "http://localhost:1234";
+	url = "http://coffee:coffee@localhost:1234";
 
 
 describe( "users", function(){

@@ -26,6 +26,12 @@ io.set('transports', ['xhr-polling']);
 
 server.listen(process.env.VMC_APP_PORT || 1234);
 
+// ultra-simple authentication as a proof of concept
+var auth = express.basicAuth(function(user, pass, callback) {
+	var result = (user === 'coffee' && pass === 'coffee');
+	callback(null, result);
+});
+
 app
  .use(allowCrossDomain)                  // allow other domains via CORS header
 // .use(express.logger({stream: logFile})) // log to access.log
@@ -42,16 +48,16 @@ app
  .post("/users/:user/:beverage", users.addBeverage)
  .get ("/users",                 users.list)
  .get ("/user/:user",            users.get)
- .post("/users/:user",           users.add)
- .del ("/users/:user",           users.del)
- .put ("/users/:user",           users.update.bind(this, io))
+ .post("/users/:user", auth,     users.add)
+ .del ("/users/:user", auth,     users.del)
+ .put ("/users/:user", auth,     users.update.bind(this, io))
 
 // beverages
- .get ("/beverages",           beverages.list)
- .get ("/beverages/:beverage", beverages.get)
- .post("/beverages/:beverage", beverages.add)
- .del ("/beverages/:beverage", beverages.del)
- .put ("/beverages/:beverage", beverages.update)
+ .get ("/beverages",                 beverages.list)
+ .get ("/beverages/:beverage",       beverages.get)
+ .post("/beverages/:beverage", auth, beverages.add)
+ .del ("/beverages/:beverage", auth, beverages.del)
+ .put ("/beverages/:beverage", auth, beverages.update)
 ;
 
 

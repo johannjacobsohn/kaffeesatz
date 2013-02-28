@@ -117,6 +117,7 @@ TODO
 
 - server
  - <del>fix Unit tests</del>
+ - <del>add (simple) authentification</del>
  - write (and test) socket API
  - write readme.md
  - clean up

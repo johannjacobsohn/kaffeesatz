@@ -1,11 +1,12 @@
 var Browser = require("zombie");
 var expect = require('expect.js')
+var url = "http://coffee:coffee@localhost:1234/admin/";
 
 require("../../server/server.js");
 
 describe("a user", function() {
 	var browser = new Browser();
-	var p = browser.visit("http://localhost:1234/admin/");
+	var p = browser.visit(url);
 	it("can be added", function(done) {
 		p.then(function () {
 			expect( browser.querySelectorAll("#users tr") ).to.have.length(0);
@@ -75,7 +76,7 @@ describe("a user", function() {
 
 describe("A beverage", function() {
 	var browser = new Browser();
-	var p = browser.visit("http://localhost:1234/admin/");
+	var p = browser.visit(url);
 
 	it("can be added", function(done) {
 		p.then(function () {
