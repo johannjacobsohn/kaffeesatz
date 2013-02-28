@@ -72,11 +72,11 @@
 		},
 		clear: function(e){
 			e.preventDefault();
-			this.model.save({"beverages": {}});
+			this.model.save({"beverages": {}}, {wait: true});
 		},
 		remove: function(e){
 			e.preventDefault();
-			this.model.destroy();
+			this.model.destroy({wait: true});
 		}
 	});
 
@@ -106,6 +106,7 @@
 			e.preventDefault();
 			var name = $("#add-user input").val();
 			this.collection.create( new User({name:name}), {
+				wait: true,
 				success: function(){
 					$("#add-user input").val("").focus();
 					$(".help-inline").hide();

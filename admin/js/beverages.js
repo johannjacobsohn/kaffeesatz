@@ -70,11 +70,11 @@
 			e.preventDefault();
 			var $form = $(e.target);
 			var newPrice = $form.find("input").val();
-			this.model.save({price: this.parseNumber(newPrice) });
+			this.model.save({price: this.parseNumber(newPrice) }, {wait: true});
 		},
 		remove: function(e){
 			e.preventDefault();
-			this.model.destroy();
+			this.model.destroy({wait: true});
 		},
 		parseNumber: function(n){
 			n = n.toString().replace(",", ".");
@@ -109,6 +109,7 @@
 			var name = $("#add-beverage input.name").val();
 			var price = this.parseNumber( $("#add-beverage input.price").val() || 0 );
 			this.collection.create( new Beverage({name:name, price:price}), {
+				wait: true,
 				success: function(){
 					$("#add-beverage input.price").val("");
 					$("#add-beverage input.name").val("").focus();
