@@ -3,64 +3,66 @@ var db = require("./db.js").db;
 db.users.ensureIndex({name: 1}, {unique: true});
 
 exports.users = {
-	addBeverage : function(req, res){
+	addBeverage : function(user, beverage, res){
 		"use strict";
 		var inc = { $inc: { inc:1 } };
-		inc.$inc["beverages."+req.params.beverage] = 1;
+		inc.$inc["beverages."+beverage] = 1;
 
-		db.users.update({name:req.params.user}, inc, {multi:true}, function(err, user) {
+		db.users.update({name:user}, inc, {multi:true}, function(err, success) {
 			// the update is complete
-			db.users.find({name: req.params.user },function(err, user) {
+			db.users.find({name: user}, function(err, users) {
 				if(err){
 					console.error(err);
-					res.end();
-				} else {
-					res.end(JSON.stringify(user[0]));
 				}
+				res(err, users[0]);
 			});
 		});
 	},
-	list : function(req, res){
+	list : function(res){
 		"use strict";
 		db.users.find(function(err, users) {
 			if(err){
 				console.error(err);
 			}
-			res.end(JSON.stringify(users));
+			res(null, users);
 		});
 	},
-	add : function(req, res, next){
+	add : function(user, res){
 		"use strict";
-		db.users.save({ name : req.param("name") }, function(err, savedUser){
+		db.users.save({ name : user.name }, function(err, savedUser){
 			if(err){
 				console.error(err);
-//					return next(new Error('failed to add User'));
 			}
-			res.end(JSON.stringify({err:err, user: savedUser}));
+			res(err, savedUser);
 		});
 	},
-	update : function(io, req, res){
+	update: function(user, res){
 		"use strict";
-		req.body.beverages = req.body.beverages || {};
-		db.users.update({ name: req.params.user }, {$set:{beverages: req.body.beverages}}, function(err){
-			db.users.find({name: req.params.user },function(err, user) {
+		db.users.update({ name: user.name }, {$set:{beverages: user.beverages}}, function(err){
+			db.users.find({name: user.name },function(err, user) {
 				if(err){
 					console.error(err);
 				}
-				res.end(JSON.stringify(user[0]));
-
-				io.sockets.emit('userChanged', user[0]);
-
+				res(null, user[0]);
 			});
 		});
 	},
-	del : function(req, res){
+	del: function(u, res){
 		"use strict";
-		db.users.remove({name:req.params.user}, true);
-		res.end(JSON.stringify({})); // backbone expect a result
+		db.users.remove({name:u.name}, true, function(err){
+			if(err){
+				console.error(err);
+			}
+			res(err);
+		});
 	},
-	get : function(req, res){
+	get: function(name, res){
 		"use strict";
-		console.log("implement me");
+		db.users.find({name: name },function(err, user) {
+			if(err){
+				console.error(err);
+			}
+			res(null, user[0]);
+		});
 	}
 };

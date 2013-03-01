@@ -3,44 +3,46 @@ var db = require("./db.js").db;
 db.beverages.ensureIndex({name: 1}, {unique: true});
 
 exports.beverages = {
-	list : function(req, res){
+	list: function(res){
 		"use strict";
 		db.beverages.find(function(err, beverages) {
 			if(err){
 				console.error(err);
 			}
-			res.end(JSON.stringify(beverages));
+			res(err, beverages);
 		});
 	},
-	get : function(req, res){
+	get: function(name, res){
 		"use strict";
-		console.log("implement me");
-	},
-	add : function(req, res){
-		"use strict";
-		db.beverages.save({ name : req.param("name"), price: req.param("price") }, function(err, beverages){
+		db.beverages.find({name: name}, function(err, beverages) {
 			if(err){
 				console.error(err);
-//					return next(new Error('failed to add beverage'));
 			}
-			res.end(JSON.stringify({err:err, beverages: beverages}));
+			res(err, beverages[0]);
 		});
 	},
-	update : function(req, res){
+	add: function(b, res){
 		"use strict";
-		req.body.price = req.body.price || 0;
-		db.beverages.update({ name: req.params.beverage }, {$set:{price: req.body.price}}, function(err){
-			db.beverages.find({name: req.params.beverage },function(err, beverages) {
+		db.beverages.save({name: b.name, price: b.price}, function(err, beverage){
+			if(err){
+				console.error(err);
+			}
+			res(err, beverage);
+		});
+	},
+	update : function(b, res){
+		"use strict";
+		db.beverages.update({name: b.name}, {$set:{price: b.price}}, function(err){
+			db.beverages.find({name: b.name},function(err, beverages) {
 				if(err){
 					console.error(err);
 				}
-				res.end(JSON.stringify(beverages[0]));
+				res(err, beverages[0]);
 			});
 		});
 	},
-	del : function(req, res){
+	del : function(b, res){
 		"use strict";
-		db.beverages.remove({name:req.params.beverage}, true);
-		res.end(JSON.stringify({})); // backbone expect a result
+		db.beverages.remove({name: b.name}, true, res);
 	}
 };

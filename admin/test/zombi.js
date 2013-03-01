@@ -149,13 +149,13 @@ describe("A beverage", function() {
 
 	it("can be deleted", function(done) {
 		p.then(function () {
-			return browser.clickLink("#beverages tr:first-child .delete");
+			return browser.clickLink("#beverages tr .delete");
 		})
-		p.then(function () {
-			return browser.clickLink("#beverages tr:first-child .delete");
+		.then(function () {
+			return browser.clickLink("#beverages tr .delete");
 		})
-		p.then(function () {
-			return browser.clickLink("#beverages tr:first-child .delete");
+		.then(function () {
+			return browser.clickLink("#beverages tr .delete");
 		})
 		.then(function () {
 			expect(browser.querySelectorAll("#beverages tr")).to.have.length(0);

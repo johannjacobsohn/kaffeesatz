@@ -69,7 +69,7 @@ describe( "users", function(){
 		});
 	});
 
-	describe( "server: GET /", function(){
+	describe( "server: GET /users", function(){
 		it( "returns one users when one has been created", function(done){
 			request(url+"/users/", function(err, body){
 				expect(body).to.not.be(null);
@@ -79,6 +79,20 @@ describe( "users", function(){
 				expect(res).to.have.length(1);
 				expect(res[0].name).to.be("Klaus");
 				expect(res[0].beverages).to.be(undefined);
+				done();
+			});
+		});
+	});
+
+	describe( "server: GET /users/:user", function(){
+		it( "returns one specific user", function(done){
+			request(url+"/users/Klaus", function(err, body){
+				expect(body).to.not.be(null);
+				var res = JSON.parse(body.body);
+				expect(err).to.be(null);
+				expect(res).to.be.an("object");
+				expect(res.name).to.be("Klaus");
+				expect(res.beverages).to.be(undefined);
 				done();
 			});
 		});
@@ -102,10 +116,6 @@ describe( "users", function(){
 		});
 	});
 
-	//@TODO: 
-//	users.get
-
-// user.put
 	describe( "server: PUT /users/{{user}}", function(){
 		it( "update a user but cannot change the name", function(done){
 			
@@ -129,7 +139,6 @@ describe( "users", function(){
 			});
 		});
 	});
-
 
 	describe( "server: DELETE /users/{{user}}", function(){
 		it( "deletes a user", function(done){
@@ -172,11 +181,10 @@ describe( "beverages: ", function(){
 			var o = {
 				uri:url+"/beverages/Kaffee",
 				headers:{'content-type': 'application/x-www-form-urlencoded'},
-				body:require('querystring').stringify( {name: "Kaffee", cost: 0.99} )
+				body:require('querystring').stringify( {name: "Kaffee", price: 0.99} )
 			};
 			request.post(o, function(err, body){
 				var res = JSON.parse(body.body);
-				expect(res.err).to.be(null);
 
 				request(url+"/beverages", function(err, body){
 					expect(body).to.not.be(undefined);
@@ -190,23 +198,40 @@ describe( "beverages: ", function(){
 		});
 	});
 
-
-	//@TODO: 
-//	beverage.get
-
-	describe( "server: DELETE /beverages/:beverage", function(){
-		it( "deletes a beverage", function(done){
-			request.del(url+"/beverages/Kaffee", function(err){
+	describe( "server: PUT /beverages/{{beverage}}", function(){
+		it( "update a beverage but cannot change the name", function(done){
+			
+			var o = {
+				uri:url+"/beverages/Kaffee",
+				headers:{'content-type': 'application/x-www-form-urlencoded'},
+				body:require('querystring').stringify( {name: "Kaffee2", price: 1.30 } )
+			};
+			request.put(o, function(err, body){
 				expect(err).to.be(null);
+				var returned = JSON.parse(body.body);
+				expect(returned.price).to.be(1.30);
+				expect(returned.name).to.be("Kaffee");
+
 				request(url+"/beverages", function(err, body){
 					expect(err).to.be(null);
 					var res = JSON.parse(body.body);
-
-					expect(err).to.be(null);
-					expect(res).to.be.an("array");
-					expect(res).to.be.empty();
+					expect(res[0]).to.eql(returned);
 					done();
 				});
+			});
+		});
+	});
+
+	describe( "server: GET /beverages/:beverage", function(){
+		it( "returns one specific beverage", function(done){
+			request(url+"/beverages/Kaffee", function(err, body){
+				expect(body).to.not.be(null);
+				var res = JSON.parse(body.body);
+				expect(err).to.be(null);
+				expect(res).to.be.an("object");
+				expect(res.name).to.be("Kaffee");
+				expect(res.price).to.be(1.30);
+				done();
 			});
 		});
 	});
@@ -227,7 +252,4 @@ describe( "beverages: ", function(){
 			});
 		});
 	});
-
-
 });
-

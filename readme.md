@@ -120,14 +120,14 @@ TODO
  - <del>add (simple) authentification</del>
  - write (and test) socket API
  - write readme.md
- - clean up
+ - <del>clean up</del>
 - admin interface
  - <del>finisch On-Screen help</del>
  - <del>edit beverages</del>
  - <del>help to set price and validate</del>
  - write readme.md
  - <del>add tests</del>
- - clean up
+ - <del>clean up</del>
 - app
  - improve small screen display
  - add firefox/ios install button / autoinstall
