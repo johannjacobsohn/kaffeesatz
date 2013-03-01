@@ -8,7 +8,6 @@ var
 	server = require("../server.js"),
 	url = "http://coffee:coffee@localhost:1234";
 
-
 describe( "users", function(){
 	describe( "server: GET /users/", function(){
 		it( "returns no users when non have been created", function(done){
@@ -31,9 +30,6 @@ describe( "users", function(){
 				body:require('querystring').stringify( {name: "Klaus"} )
 			};
 			request.post(o, function(err, body){
-				var res = JSON.parse(body.body);
-				expect(res.err).to.be(null);
-
 				request(url+"/users", function(err, body){
 					expect(body).to.not.be(undefined);
 					var res = JSON.parse(body.body);
@@ -55,8 +51,6 @@ describe( "users", function(){
 			};
 			request.post(o, function(err, body){
 				expect(err).to.be(null);
-				var res = JSON.parse(body.body);
-				expect(res.err).to.not.be(null);
 				request(url+"/users", function(err, body){
 					expect(body).to.not.be(undefined);
 					var res = JSON.parse(body.body);

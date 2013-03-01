@@ -36,10 +36,11 @@
 
 	var users = new UserCollection();
 
-	var socket = io.connect('/');
-	socket.on('userChanged', function (data) {
-		users.where({name: data.name})[0].set(data);
-	});
+	var socket = io.connect('/')
+		.on('userChanged', users.update.bind(users))
+		.on('userAdded',   users.add.bind(users))
+		.on('userDeleted', users.remove.bind(users))
+	;
 
 	var UserView = Backbone.View.extend({
 		tagName: 'tr', // name of tag to be created
@@ -92,6 +93,7 @@
 
 			this.collection = users;
 			this.collection.bind('add', this.render); // collection event binder
+
 			beverageCollection.on("change", this.render);
 
 			this.collection.fetch({ success: this.render });
@@ -107,7 +109,7 @@
 			var name = $("#add-user input").val();
 			this.collection.create( new User({name:name}), {
 				wait: true,
-				success: function(){
+				success: function(newUser, response, options){
 					$("#add-user input").val("").focus();
 					$(".help-inline").hide();
 					var $added = $("#add-user .added");

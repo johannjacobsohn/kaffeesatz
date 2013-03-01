@@ -41,8 +41,15 @@ exports.beverages = {
 			});
 		});
 	},
-	del : function(b, res){
+	del: function(u, res){
 		"use strict";
-		db.beverages.remove({name: b.name}, true, res);
+		this.get(u.name, function(err, user){
+			db.beverages.remove({name: user.name}, true, function(err){
+				if(err){
+					console.error(err);
+				}
+				res(err, user);
+			});
+		});
 	}
 };

@@ -49,11 +49,13 @@ exports.users = {
 	},
 	del: function(u, res){
 		"use strict";
-		db.users.remove({name:u.name}, true, function(err){
-			if(err){
-				console.error(err);
-			}
-			res(err);
+		this.get(u.name, function(err, user){
+			db.users.remove({name:user.name}, true, function(err){
+				if(err){
+					console.error(err);
+				}
+				res(err, user);
+			});
 		});
 	},
 	get: function(name, res){

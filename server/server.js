@@ -35,6 +35,7 @@ var
 if(process.env.VCAP_SERVICES){
 	io.set('transports', ['xhr-polling']);
 }
+io.set('log level', 0);
 
 server.listen(process.env.VMC_APP_PORT || 1234);
 
@@ -54,6 +55,7 @@ app
 	"use strict";
 	users.addBeverage(req.param("user"), req.param("beverage"), function(err, user){
 		res.end( JSON.stringify(user) );
+		io.sockets.emit('userChanged', user);
 	});
  })
  .get ("/users", function(req, res){
@@ -72,13 +74,16 @@ app
 	"use strict";
 	var user = { name : req.param("name") };
 	users.add(user, function(err, savedUser){
-		res.end(JSON.stringify({err:err, user: savedUser}));
+		res.end(JSON.stringify(savedUser));
+		io.sockets.emit('userAdded', savedUser);
 	});
   })
  .del("/users/:user", auth, function(req, res){
 	"use strict";
-	users.del({name: req.param("user")}, function(err){
+	var user = {name: req.param("user")};
+	users.del(user, function(err, user){
 		res.end("{}"); // backbone expects a result
+		io.sockets.emit('userDeleted', user);
 	});
   })
  .put ("/users/:user", auth, function(req, res){
@@ -109,13 +114,15 @@ app
 	var beverage = {name: req.param("name"), price: parseFloat(req.param("price"))};
 	beverages.add(beverage, function(err, beverage){
 		res.end( JSON.stringify(beverage) );
+		io.sockets.emit('beverageAdded', beverage);
 	});
  })
  .del ("/beverages/:beverage", auth, function(req, res){
 	"use strict";
 	var beverage = {name: req.param("beverage")};
-	beverages.del(beverage, function(err){
+	beverages.del(beverage, function(err, beverage){
 		res.end("{}");
+		io.sockets.emit('beverageDeleted', beverage);
 	});
  })
  .put ("/beverages/:beverage", auth, function(req, res){
@@ -123,6 +130,7 @@ app
 	var beverage = { name: req.param("beverage"), price: parseFloat(req.body.price) };
 	beverages.update(beverage, function(err, beverage){
 		res.end( JSON.stringify(beverage) );
+		io.sockets.emit('beverageChanged', beverage);
 	});
  })
 ;

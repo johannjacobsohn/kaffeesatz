@@ -38,6 +38,12 @@
 
 	var beverageCollection = new Beverages();
 
+	var socket = io.connect('/')
+		.on('beverageChanged', beverageCollection.update.bind(beverageCollection))
+		.on('beverageAdded',   beverageCollection.add.bind(beverageCollection))
+		.on('beverageDeleted', beverageCollection.remove.bind(beverageCollection))
+	;
+
 (function($){
 	"use strict";
 

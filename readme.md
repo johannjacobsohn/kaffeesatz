@@ -118,7 +118,8 @@ TODO
 - server
  - <del>fix Unit tests</del>
  - <del>add (simple) authentification</del>
- - write (and test) socket API
+ - <del>write socket API</del>
+ - write unit test for socket API
  - write readme.md
  - <del>clean up</del>
 - admin interface
@@ -128,6 +129,7 @@ TODO
  - write readme.md
  - <del>add tests</del>
  - <del>clean up</del>
+ - check connection status
 - app
  - improve small screen display
  - add firefox/ios install button / autoinstall
@@ -135,6 +137,8 @@ TODO
  - add tests
  - check connection status
  - reload on server/manifest change
+ - use socket API
+ - refaktor Tally.js into own project
  - clean up
 - misc
  - <del>Travis CI</del>
