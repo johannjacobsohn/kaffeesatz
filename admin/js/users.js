@@ -37,7 +37,9 @@
 	var users = new UserCollection();
 
 	var socket = io.connect('/')
-		.on('userChanged', users.update.bind(users))
+		.on('userChanged', function(user){
+			users.update(user, {remove: false});
+		})
 		.on('userAdded',   users.add.bind(users))
 		.on('userDeleted', users.remove.bind(users))
 	;
@@ -85,7 +87,8 @@
 		el: $('#users-tab'), // el attaches to existing element
 		events: {
 			'submit #add-user': "addUser",
-			'show a[href=#add-user]': "addUserShown",
+			'shown a[href=#add-user]': "addUserShown",
+			'show a[href=#add-user]': "addUserShow",
 			'keyup #add-user input': "checkUser"
 		},
 		initialize: function(){
@@ -118,8 +121,11 @@
 				}.bind(this)
 			});
 		},
+		addUserShow: function(){
+			$("#add-user input").val("");
+		},
 		addUserShown: function(){
-			$("#add-user input").val("").focus();
+			$("#add-user input").focus();
 		},
 		checkUser: function(e){
 			var name = $("#add-user input").val();

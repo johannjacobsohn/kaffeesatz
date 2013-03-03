@@ -39,7 +39,10 @@
 	var beverageCollection = new Beverages();
 
 	var socket = io.connect('/')
-		.on('beverageChanged', beverageCollection.update.bind(beverageCollection))
+		.on('beverageChanged', function(beverage){
+			"use strict";
+			beverageCollection.update(beverage, {remove: false});
+		})
 		.on('beverageAdded',   beverageCollection.add.bind(beverageCollection))
 		.on('beverageDeleted', beverageCollection.remove.bind(beverageCollection))
 	;
@@ -92,7 +95,8 @@
 		el: $('#beverages-tab'), // el attaches to existing element
 		events: {
 			'submit #add-beverage': "addBeverage",
-			'show a[href=#add-beverage]': "modalShown",
+			'show a[href=#add-beverage]': "modalShow",
+			'shown a[href=#add-beverage]': "modalShown",
 			'keyup #add-beverage input.name': "checkBeverage",
 			'keyup input.price': "checkPrice"
 		},
@@ -126,10 +130,13 @@
 				}.bind(this)
 			});
 		},
-		modalShown: function(){
+		modalShow: function(){
 			var $beverageModal = $("#add-beverage");
 			$beverageModal.find(".price-nan").hide();
-			$beverageModal.find("input.price, input.name").val("").focus();
+			$beverageModal.find("input.price, input.name").val("");
+		},
+		modalShown: function(){
+			$("#add-beverage").find("input.name").focus();
 		},
 		checkBeverage: function(e){
 			var name = $("#add-beverage input.name").val();
