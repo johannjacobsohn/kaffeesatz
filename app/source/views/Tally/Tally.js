@@ -1,7 +1,6 @@
 // http://jsfiddle.net/fGYcd/
 enyo.kind({
 	name: "Tally",
-	bgUrl: "http://i.stack.imgur.com/96hvp.png",
 	kind: "Repeater",
 	bgHeight : 20,
 	bgVals : [
@@ -13,7 +12,7 @@ enyo.kind({
 	],
 	components: [
 		{kind: "Repeater", name: "repeater", count: 1, onSetupItem: "setupItem", components: [
-			{name: "mark"}
+			{name: "mark", classes: "tally-mark"}
 		]}
 	],
 	setupItem: function(inSender, inEvent) {
@@ -21,11 +20,7 @@ enyo.kind({
 		var item = inEvent.item.$.mark;
 		var scale = this.bgHeight/125;
 
-		item.applyStyle("float", 'left');
 		item.applyStyle("height", this.bgHeight + 'px');
-		item.applyStyle("background-image", "url("+this.bgUrl+")");
-		item.applyStyle("background-size", "auto " + this.bgHeight + "px");
-		item.applyStyle("background-repeat", "no-repeat");
 		if( index < this.count-1 ){
 			item.applyStyle("background-position", this.bgVals[4][1]*scale + "px 0");
 			item.applyStyle("width", this.bgVals[4][0]*scale + 'px');
@@ -43,7 +38,6 @@ enyo.kind({
 	},
 	numberChanged: function(){
 		var c = Math.ceil(this.number/5);
-//		c = this.number%5===0 && this.number!==0 ? c+1 : c;
 		this.setCount( c );
 		this.countChanged();
 	}

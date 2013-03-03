@@ -1,8 +1,11 @@
 enyo.kind({
 	name: "Coffee.RootView",
-//	layoutKind: "enyo.FittableRowsLayout",
+	layoutKind: "enyo.FittableRowsLayout",
+	classes: "root",
 	components: [
-//		{kind: "Tally", name: "count", count: 4, number: 23},
-		{name: "list", kind: "Coffee.ListView"}
+		{kind: "Image", src:"assets/kaffeesatzmedia.png", style: "display: block; margin: auto;"},
+		{kind: "Scroller", fit: true, components: [
+			{kind: "Coffee.BeverageList"}
+		]}
 	]
 });

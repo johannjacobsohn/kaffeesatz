@@ -1,5 +1,5 @@
 enyo.ready(function() {
-	Coffee.Beverage = Backbone.Model.extend({
+	Coffee.BeverageModel = Backbone.Model.extend({
 		defaults: {
 			name: '',
 			price: 0

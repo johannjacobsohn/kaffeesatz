@@ -1,6 +1,6 @@
 enyo.ready(function () {
 	Coffee.Beverages = Backbone.Collection.extend({
-		model: Coffee.Beverage,
+		model: Coffee.BeverageModel,
 		url: '/beverages',
 		comparator: function(user){
 			return user.get('name');

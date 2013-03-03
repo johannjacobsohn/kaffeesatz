@@ -1,0 +1,12 @@
+enyo.depends(
+//	"ListView/ListView.js",
+//	"ListView/ListItem.js",
+	"RootView.js",
+	"Beverage.js",
+	"BeverageList.js",
+	"User.js",
+	"UserList.js",
+	"tally.js"
+);
+
+

@@ -1,6 +1,6 @@
 body {
 	background: #f3f3f3;
-	padding: 10px;
+	skip.padding: 10px;
 }
 
 
@@ -63,7 +63,7 @@ skip.user-row .count{
 	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 }
-/*
+
 .innerwrapper:before, .innerwrapper:after{
 	position: absolute;
 	width: 40%;
@@ -92,4 +92,4 @@ skip.user-row .count{
 	-o-transform: skew(5deg) rotate(5deg);
 	transform: skew(5deg) rotate(5deg);
 } 
-*/
+/**/

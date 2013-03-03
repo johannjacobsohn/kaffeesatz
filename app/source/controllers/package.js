@@ -1,3 +1,6 @@
 enyo.depends(
-    "ListController.js"
+	"BeverageCollectionController.js",
+	"BeverageController.js",
+	"UserCollectionController.js",
+	"UserController.js"
 );

@@ -136,10 +136,10 @@ TODO
  - write readme.md
  - add tests
  - check connection status
- - reload on server/manifest change
- - use socket API
+ - <del>reload on server/manifest change</del>
+ - <del>use socket API</del>
  - refaktor Tally.js into own project
- - clean up
+ - <del>clean up</del>
 - misc
  - <del>Travis CI</del>
  - share models, collections and validation
