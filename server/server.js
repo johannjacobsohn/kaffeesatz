@@ -36,6 +36,7 @@ if(process.env.VCAP_SERVICES){
 	io.set('transports', ['xhr-polling']);
 }
 io.set('log level', 0);
+io.set("browser client minification", true);
 
 server.listen(process.env.VMC_APP_PORT || 1234);
 

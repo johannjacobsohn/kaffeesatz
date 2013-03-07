@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Kaffeesatz</title>
+		<title>☕ Kaffeesatz</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
-		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="/admin/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="/admin/css/bootstrap-responsive.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="page-header">
@@ -19,9 +19,20 @@
 					class="btn btn-large help"
 					href="#"
 					style="position: absolute; right: 4px;"
-				><i class="icon-download"></i> Installieren</a>
+				>
+				<i style="
+					line-height: 66.6%;
+					font-size: 150%;
+					-webkit-transform:rotateZ(90deg);
+					   -moz-transform:rotateZ(90deg);
+					     -o-transform:rotateZ(90deg);
+					    -ms-transform:rotateZ(90deg);
+					        transform:rotateZ(90deg);
+					display: inline-block;
+					vertical-align: middle;"
+					>➲</i> Installieren</a>
 			</span>
-			<h1 style="text-align: center;"><img src="img/kaffeesatzmedia.png" alt="Kaffeesatz" style="height: 60px;"> <a class="btn show-help" style="position:fixed; bottom: 0; right:0;">?</a></h1>
+			<h1 style="text-align: center;"><img src="/admin/img/kaffeesatzmedia.png" alt="Kaffeesatz" style="height: 60px;"> <a class="btn show-help" style="position:fixed; bottom: 0; right:0;">?</a></h1>
 		</div>
 
 		<div class="row-fluid">
@@ -37,7 +48,7 @@
 							data-original-title="Mehr Nutzer"
 							data-content="Hier weitere Personen hinzufügen"
 							class="help"
-							><i class=" icon-plus-sign"></i> Noch einen</a>
+							>✚ Noch einen</a>
 					</li>
 				</ul>
 				<div class="tab-content">
@@ -72,7 +83,7 @@
 							data-trigger="manual"
 							data-original-title="Mehr Getränke hinzufügen"
 							data-content="Hier ein weiteres Produkt anlegen"
-							class="help"><i class="icon-plus-sign"></i> Noch eins</a>
+							class="help">✚ Noch eins</a>
 					</li>
 				</ul>
 				<div class="tab-content">
@@ -115,7 +126,7 @@
 			<td class="beverages"><%= beverages %></td>
 			<td class="cost" style="text-align: right;"><span class="badge"><%= cost %>€</span></td>
 			<td class="input-append input-prepend" style="text-align: right; width: 20px"> <!-- intentionally to small to only take up as much space as possible needed -->
-				<a class="clear btn btn-success btn-mini" href="#"><i class="icon-ok"></i> Hat bezahlt</a>
+				<a class="clear btn btn-success btn-mini" href="#">✓ Hat bezahlt</a>
 				<a class="delete btn btn-danger btn-mini" href="#">&times;</a>
 			</td>
 		</script>
@@ -138,18 +149,18 @@
 				</form>
 			</td>
 			<td class="input-append input-prepend" style="text-align: right;">
-				<a class="edit btn btn-mini" href="#"><i class="icon-pencil"></i></a>
+				<a class="edit btn btn-mini" href="#"><i style="line-height: 66.6%; font-size: 150%; -webkit-transform:rotateY(180deg); -moz-transform:rotateY(180deg); -o-transform:rotateY(180deg); -ms-transform:rotateY(180deg); transform:rotateY(180deg); display: inline-block; vertical-align: middle;">✎</i></a>
 				<a class="delete btn btn-danger btn-mini" href="#">&times;</a>
 			</td>
 		</script>
 
-		<script src="js/lib/jquery.js"></script>
-		<script src="js/lib/bootstrap.min.js"></script>
-		<script src="js/lib/underscore-min.js"></script>
-		<script src="js/lib/backbone-min.js"></script>
+		<script src="/admin/js/lib/jquery-1.9.1.min.js"></script>
+		<script src="/admin/js/lib/bootstrap.min.js"></script>
+		<script src="/admin/js/lib/underscore-min.js"></script>
+		<script src="/admin/js/lib/backbone-min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
-		<script src="js/app.js"></script>
-		<script src="js/beverages.js"></script>
-		<script src="js/users.js"></script>
+		<script src="/admin/js/app.js"></script>
+		<script src="/admin/js/beverages.js"></script>
+		<script src="/admin/js/users.js"></script>
 	</body>
 </html>
