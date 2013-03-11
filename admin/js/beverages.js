@@ -12,7 +12,7 @@
 		idAttribute: "name",
 		isNew: function(){
 			"use strict";
-			return !this.has("_id")
+			return !this.has("_id");
 		}
 	});
 
