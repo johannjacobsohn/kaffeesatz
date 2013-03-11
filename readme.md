@@ -2,12 +2,28 @@ Kaffeesatz(media)
 =================
 
 This is just another toy project, comprising a server, an admin interface 
-and an user app.
+and a mobile app. The entire project is (mostly) written in Javascript.
+
+Architecture
+------------
+
+The project consists of three components: a server which serves two apps and 
+keeps the data; a coffee list, which users can use to book beverages and a 
+admin interface which can be used to organize users and beverages.
+
+All the components communicate through an (partly password protected) 
+REST-API and additionally through websockets.
 
 
-                Server
-    
-    User App            Admin Interface
+     ---------------------------------------------------------------------------
+     |                                Server                                   |
+     ---------------------------------------------------------------------------
+          ↧  serves apps      ⇅ exposes partly       ↓ sends updates  
+             as static          password-protected     through 
+             files              REST-Interface         websockets
+     ------------------------------------ --------------------------------------
+     |            User App              | |    Admin Interface                 |
+     ------------------------------------ --------------------------------------
 
 
 
@@ -32,7 +48,7 @@ I has its own readme file at [/server/readme.md](/tree/master/server/readme.md).
 
 
 Admin Interface
----------------
+--------------
 
 The administration is written with [backbone.js](http://backbonejs.org/) and 
 [Twitter Bootstrap](http://twitter.github.com/bootstrap/). 
@@ -63,8 +79,8 @@ This project aims to:
 - be installable on ios & firefox
 
 
-Design Mockups:
----
+Design Mockups
+-------------
 
     wide:                            narrow:
     _____________________________    ________________
@@ -89,15 +105,16 @@ Design Mockups:
 Setup
 -----
 
-1. Checkout & Setup
+1. Install prerequisites
+    - [MongoDB](http://docs.mongodb.org/manual/installation/)
+    - [NodeJS](http://nodejs.org/download/)
+
+
+2. Checkout & Setup
 
         git clone https://github.com/Satzmedia/kaffeesatz
         cd kaffeesatz
         make setup
-
-2. Install prerequisites
-    - [MongoDB](http://docs.mongodb.org/manual/installation/)
-    - [NodeJS](http://nodejs.org/download/)
 
 3. (optional) Run tests
 
@@ -106,34 +123,34 @@ Setup
 4. Start database and run server
 
         mongod
-        node app.js
+        node app
 
 5. Open App
     - App at [http://localhost:1234/app/debug.html](http://localhost:1234/app/debug.html)
     - Admin interface at [http://localhost:1234/app/](http://localhost:1234/app/)
 
 TODO
----------
+----
 
 - server
  - <del>fix Unit tests</del>
  - <del>add (simple) authentification</del>
  - <del>write socket API</del>
- - write unit test for socket API
- - write readme.md
+ - <del>write unit test for socket API</del>
+ - <del>write readme.md</del>
  - <del>clean up</del>
 - admin interface
  - <del>finisch On-Screen help</del>
  - <del>edit beverages</del>
  - <del>help to set price and validate</del>
- - write readme.md
+ - <del>write readme.md</del>
  - <del>add tests</del>
  - <del>clean up</del>
  - check connection status
 - app
  - improve small screen display
  - add firefox/ios install button / autoinstall
- - write readme.md
+ - <del>write readme.md</del>
  - add tests
  - check connection status
  - <del>reload on server/manifest change</del>
@@ -142,7 +159,6 @@ TODO
  - <del>clean up</del>
 - misc
  - <del>Travis CI</del>
- - share models, collections and validation
  - write product page
  - <del>Track errors with https://github.com/Lapple/ErrorBoard</del>
 
