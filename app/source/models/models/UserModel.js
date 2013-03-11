@@ -5,10 +5,7 @@ enyo.ready(function() {
 			beverages: {},
 			correspondingBeverage: "Kaffee"
 		},
-		idAttribute: "_id", // MongoDB-Style
-		url: function(){
-			return '/users/'+this.get("name");
-		},
+		idAttribute: "name",
 		sync: function(method, model, options){
 			var url = "/users/"+model.get("name")+"/"+model.get("correspondingBeverage");
 			new enyo.Ajax({url: url, method: "POST"})

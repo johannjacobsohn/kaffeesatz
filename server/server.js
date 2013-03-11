@@ -71,12 +71,16 @@ app
 		res.end( JSON.stringify(user) );
 	});
  })
- .post("/users/:user", auth, function(req, res){
+ .post("/users", auth, function(req, res){
 	"use strict";
 	var user = { name : req.param("name") };
 	users.add(user, function(err, savedUser){
-		res.end(JSON.stringify(savedUser));
-		io.sockets.emit('userAdded', savedUser);
+		if(!err){
+			io.sockets.emit('userAdded', savedUser);
+			res.end(JSON.stringify(savedUser));
+		} else {
+			res.end();
+		}
 	});
   })
  .del("/users/:user", auth, function(req, res){
@@ -110,7 +114,7 @@ app
 		res.end( JSON.stringify(beverage) );
 	});
  })
- .post("/beverages/:beverage", auth, function(req, res){
+ .post("/beverages", auth, function(req, res){
 	"use strict";
 	var beverage = {name: req.param("name"), price: parseFloat(req.param("price"))};
 	beverages.add(beverage, function(err, beverage){

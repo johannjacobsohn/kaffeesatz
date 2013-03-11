@@ -10,9 +10,10 @@
 			name: 'Klaus',
 			beverages: { }
 		},
-		idAttribute: "_id", // MongoDB-Style
-		url: function(){
-			return '/users/'+this.get("name");
+		idAttribute: "name",
+		isNew: function(){
+			"use strict";
+			return !this.has("_id")
 		}
 	});
 
@@ -20,6 +21,7 @@
 		model: User,
 		url: '/users',
 		comparator: function(user){
+			"use strict";
 			return user.get('name');
 		}
 	});
@@ -110,6 +112,8 @@
 		addUser: function(e){
 			e.preventDefault();
 			var name = $("#add-user input").val();
+var user =  new User({name:name})
+alert("isNew" + user.isNew() )
 			this.collection.create( new User({name:name}), {
 				wait: true,
 				success: function(newUser, response, options){

@@ -2,13 +2,13 @@ var Browser = require("zombie");
 var expect = require('expect.js');
 var request = require("request");
 
-require("../../server/server.js");
+require("../../app.js");
 
 describe("initial state", function() {
 	var browser = new Browser();
-	var p = browser.visit("http://localhost:1234/app/index.html");
 
 	it("has no users nor beverages", function(done) {
+		var p = browser.visit("http://localhost:1234/app/index.html");
 		p.then(function () {
 			expect( browser.query(".user-row") ).to.be(undefined);
 			expect( browser.query(".beverage") ).to.be(undefined);

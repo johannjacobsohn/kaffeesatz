@@ -4,10 +4,7 @@ enyo.ready(function() {
 			name: '',
 			price: 0
 		},
-		idAttribute: "_id",
-		url: function(){
-			return '/beverages/'+this.get("name");
-		}
+		idAttribute: "name"
 	});
 });
 

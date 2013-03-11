@@ -9,10 +9,10 @@
 			name: '',
 			price: 0
 		},
-		idAttribute: "_id", // MongoDB-Style
-		url: function(){
+		idAttribute: "name",
+		isNew: function(){
 			"use strict";
-			return '/beverages/'+this.get("name");
+			return !this.has("_id")
 		}
 	});
 
