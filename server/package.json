@@ -11,7 +11,8 @@
 		"request": "2.x",
 		"mocha": "*",
 		"expect.js": "*",
-		"jshint": "*"
+		"jshint": "*",
+		"socket.io-client": "*"
 	}
 }
 
