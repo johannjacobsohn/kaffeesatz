@@ -7,6 +7,19 @@
 	});
 }());
 
+var socket = io.connect('/')
+	.on("connect", function(){
+		"use strict";
+		$(".connected").show();
+		$(".not-connected").hide();
+	})
+	.on("disconnect", function(){
+		"use strict";
+		$(".connected").hide();
+		$(".not-connected").show();
+	})
+;
+
 // Log errors with ErrorBoard (https://github.com/Lapple/ErrorBoard)
 window.onerror = function( errorMsg, url, lineNumber ) {
 	"use strict";

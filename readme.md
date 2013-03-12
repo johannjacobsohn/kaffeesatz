@@ -146,7 +146,7 @@ TODO
  - <del>write readme.md</del>
  - <del>add tests</del>
  - <del>clean up</del>
- - check connection status
+ - <del>check connection status</del>
 - app
  - improve small screen display
  - add firefox/ios install button / autoinstall
