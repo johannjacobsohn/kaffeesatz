@@ -155,7 +155,7 @@ TODO
  - check connection status
  - <del>reload on server/manifest change</del>
  - <del>use socket API</del>
- - refaktor Tally.js into own project
+ - <del>refaktor Tally.js into own project</del>
  - <del>clean up</del>
 - misc
  - <del>Travis CI</del>

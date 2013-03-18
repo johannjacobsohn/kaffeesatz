@@ -7,7 +7,7 @@ enyo.depends(
 	"UserList.js",
 	"User.js",
 
-	"Tally"
+	"$lib/Tally"
 );
 
 

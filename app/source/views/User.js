@@ -13,6 +13,6 @@ enyo.kind({
 	components: [
 		{name: "name", classes: "name"},
 //		{name: "counter", classes: "count"},
-		{kind: "Tally", fit: true, name: "count", classes: "count", count: 1, number: 0}
+		{kind: "Tally", fit: true, name: "count", classes: "count", number: 0}
 	]
 });
