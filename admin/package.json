@@ -7,7 +7,8 @@
 		"zombie": "*",
 		"mocha": "*",
 		"expect.js": "*",
-		"jshint": "*"
+		"jshint": "*",
+		"request": "2.0.x"
 	}
 }
 
