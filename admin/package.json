@@ -8,7 +8,7 @@
 		"mocha": "*",
 		"expect.js": "*",
 		"jshint": "*",
-		"request": "2.0.x"
+		"request": "*"
 	}
 }
 
