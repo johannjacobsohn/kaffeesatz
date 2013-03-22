@@ -37,11 +37,9 @@
 	var users = new UserCollection();
 
 	var socket = io.connect('/')
-		.on('userChanged', function(user){
-			users.update(user, {remove: false});
-		})
+		.on('userChanged', function(user){ users.set(user, {remove: false}); })
 		.on('userAdded',   users.add.bind(users))
-		.on('userDeleted', users.remove.bind(users))
+		.on('userDeleted', function(u){ users.remove(new User(u)); })
 	;
 
 	var UserView = Backbone.View.extend({
@@ -95,11 +93,10 @@
 			_.bindAll(this, 'render', 'addUser', 'appendUser', "checkUser"); // every function that uses 'this' as the current object should be in here
 
 			this.collection = users;
-			this.collection.bind('add', this.render); // collection event binder
+			this.collection.bind('add sync', this.render); // collection event binder
+			this.collection.fetch();
 
-			beverageCollection.on("change", this.render);
-
-			this.collection.fetch({ success: this.render });
+			beverageCollection.on("sync change", this.render );
 		},
 		render: function(){
 			$("#users").empty();

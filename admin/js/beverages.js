@@ -38,17 +38,14 @@
 
 	var beverageCollection = new Beverages();
 
-	var socket = io.connect('/')
-		.on('beverageChanged', function(beverage){
-			"use strict";
-			beverageCollection.update(beverage, {remove: false});
-		})
-		.on('beverageAdded',   beverageCollection.add.bind(beverageCollection))
-		.on('beverageDeleted', beverageCollection.remove.bind(beverageCollection))
-	;
-
 (function($){
 	"use strict";
+
+	var socket = io.connect('/')
+		.on('beverageChanged', function(beverage){ beverageCollection.set(beverage, {remove: false}); })
+		.on('beverageAdded',   beverageCollection.add.bind(beverageCollection))
+		.on('beverageDeleted', function(bev){ beverageCollection.remove(new Beverage(bev)); })
+	;
 
 	var BeverageView = Backbone.View.extend({
 		tagName: 'tr',

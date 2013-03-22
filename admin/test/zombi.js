@@ -1,12 +1,20 @@
-var Browser = require("zombie");
-var expect = require('expect.js')
-var url = "http://coffee:coffee@localhost:1234/admin/";
+var
+	Browser = require("zombie"),
+	expect = require('expect.js'),
+	request = require("request"),
+	url = "http://coffee:coffee@localhost:1234/admin/"
+;
 
+// start server
 require("../../server/server.js");
 
+// start browser
+var browser = new Browser();
+
+// visit interface, init promise
+var p = browser.visit(url);
+
 describe("a user", function() {
-	var browser = new Browser();
-	var p = browser.visit(url);
 	it("can be added", function(done) {
 		p.then(function () {
 			expect( browser.querySelectorAll("#users tr") ).to.have.length(0);
@@ -68,6 +76,33 @@ describe("a user", function() {
 		})
 		.then(done, done);
 	});
+
+	it("is added in the interface when added on the server", function (done) {
+		var url = "http://coffee:coffee@localhost:1234";
+		var o = {
+			uri:url+"/users",
+			headers:{'content-type': 'application/x-www-form-urlencoded'},
+			body:require('querystring').stringify( {name: "User"} )
+		};
+
+		request.post(o, function(err, body){
+			setTimeout(function(){
+				expect(browser.querySelectorAll("#users tr")).to.have.length(1);
+				done();
+			}, 1);
+		});
+	});
+
+	it("is removed in the interface when removed from the server", function (done) {
+		var url = "http://coffee:coffee@localhost:1234";
+
+		request.del(url+"/users/User", function(err, body){
+			setTimeout(function(){
+				expect(browser.querySelectorAll("#users tr")).to.have.length(0);
+				done();
+			}, 1);
+		});
+	});
 });
 
 
@@ -75,9 +110,6 @@ describe("a user", function() {
 //beverages
 
 describe("A beverage", function() {
-	var browser = new Browser();
-	var p = browser.visit(url);
-
 	it("can be added", function(done) {
 		p.then(function () {
 			expect( browser.querySelectorAll("#beverages tr") ).to.have.length(0);
@@ -161,5 +193,32 @@ describe("A beverage", function() {
 			expect(browser.querySelectorAll("#beverages tr")).to.have.length(0);
 		})
 		.then(done, done);
+	});
+	
+	it("is added in the interface when added on the server", function (done) {
+		var url = "http://coffee:coffee@localhost:1234";
+		var o ={
+			uri:url+"/beverages",
+			headers:{'content-type': 'application/x-www-form-urlencoded'},
+			body:require('querystring').stringify( {name: "Beverage", price: 0.1} )
+		};
+
+		request.post(o, function(err, body){
+			setTimeout(function(){
+				expect(browser.querySelectorAll("#beverages tr")).to.have.length(1);
+				done();
+			}, 1);
+		});
+	});
+
+	it("is removed in the interface when removed from the server", function (done) {
+		var url = "http://coffee:coffee@localhost:1234";
+
+		request.del(url+"/beverages/Beverage", function(err, body){
+			setTimeout(function(){
+				expect(browser.querySelectorAll("#beverages tr")).to.have.length(0);
+				done();
+			}, 1);
+		});
 	});
 });
