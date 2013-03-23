@@ -5,9 +5,8 @@ setup:
 	npm install
 
 test:
-	mongo $(KAFFEESATZTESTDB) --eval "db.dropDatabase()"
-	tools/minify.sh
-	node_modules/.bin/mocha
+	mongo coffeedb --eval "db.dropDatabase()"
+	node_modules/.bin/mocha-phantomjs http://localhost:1234/app/test/runner.html -s localToRemoteUrlAccessEnabled=true -s webSecurityEnabled=false
 
 lint:
 	node_modules/.bin/jshint .

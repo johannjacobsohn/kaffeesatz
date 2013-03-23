@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<title> Tests </title>
+		<link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+
+		<script src="/socket.io/socket.io.js"></script>
+		<!-- enyo (debug) -->
+		<script src="../enyo/enyo.js"></script>
+		<!-- application (debug) -->
+		<script src="../source/package.js" type="text/javascript"></script>
+	</head>
+	<body class="enyo-unselectable">
+        <div id="app" style="position: absolute; left: -999em;"></div>
+        <div id="mocha"></div>
+        <script src="../node_modules/mocha/mocha.js"></script>
+        <script src="../node_modules/expect.js/expect.js"></script>
+        <script>
+            mocha.ui('bdd');
+            mocha.reporter('html');
+            mocha.setup({globals: ['performance']});
+        </script>
+        <script src="test.js"></script>
+        <script>
+			setTimeout(function(){
+				if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+				else { mocha.run(); }
+			}, 1000)
+        </script>
+    </body>
+</html>

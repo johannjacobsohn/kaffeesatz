@@ -20,5 +20,10 @@ enyo.ready(function () {
 	enyo.Scroller.touchScrolling = true;
 
 	var app = new Coffee.Application();
-	app.render();
+	var el = document.getElementById("app");
+	if(el) {
+		app.renderInto( el );
+	} else {
+		app.render();
+	}
 });
