@@ -1,5 +1,3 @@
-export KAFFEESATZTESTDB := coffeedb_test
-
 setup:
 	git submodule update --init --recursive
 	$(MAKE) setup -C server
@@ -7,13 +5,9 @@ setup:
 	$(MAKE) setup -C app
 
 test:
-	mongo $(KAFFEESATZTESTDB) --eval "db.dropDatabase()"
-
 	$(MAKE) test -C server
 	$(MAKE) test -C admin
 	$(MAKE) test -C app
-
-	mongo $(KAFFEESATZTESTDB) --eval "db.dropDatabase()"
 
 lint: 
 	$(MAKE) lint -C server

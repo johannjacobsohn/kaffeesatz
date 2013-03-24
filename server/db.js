@@ -17,9 +17,6 @@ var mongo = {
 if(process.env.VCAP_SERVICES){
 	var env = JSON.parse(process.env.VCAP_SERVICES);
 	mongo = env['mongodb-1.8'][0].credentials;
-} else if(process.env.KAFFEESATZTESTDB){
-	// local testing - set db to coffeedb_test to be dropped later
-	mongo.db = process.env.KAFFEESATZTESTDB;
 }
 
 var mongourl;
