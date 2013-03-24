@@ -50,12 +50,18 @@ exports.users = {
 	del: function(u, res){
 		"use strict";
 		this.get(u.name, function(err, user){
-			db.users.remove({name:user.name}, true, function(err){
-				if(err){
-					console.error(err);
-				}
-				res(err, user);
-			});
+			if(err){
+				console.error(err);
+			} else if(user) {
+				db.users.remove({name:user.name}, true, function(err){
+					if(err){
+						console.error(err);
+					}
+					res(err, user);
+				});
+			} else {
+				res(err, u);
+			}
 		});
 	},
 	get: function(name, res){

@@ -1,6 +1,5 @@
 var db = require("./db.js").db;
-
-db.beverages.ensureIndex({name: 1}, {unique: true});
+db.beverages.ensureIndex({name: 1}, {unique: true, dropDups: true});
 
 exports.beverages = {
 	list: function(res){
@@ -44,12 +43,18 @@ exports.beverages = {
 	del: function(u, res){
 		"use strict";
 		this.get(u.name, function(err, user){
-			db.beverages.remove({name: user.name}, true, function(err){
-				if(err){
-					console.error(err);
-				}
-				res(err, user);
-			});
+			if(err){
+				console.error(err);
+			} else if(user) {
+				db.beverages.remove({name:user.name}, true, function(err){
+					if(err){
+						console.error(err);
+					}
+					res(err, user);
+				});
+			} else {
+				res(err, u);
+			}
 		});
 	}
 };
