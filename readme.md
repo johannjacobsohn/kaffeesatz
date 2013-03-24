@@ -133,34 +133,35 @@ TODO
 ----
 
 - server
- - <del>fix Unit tests</del>
- - <del>add (simple) authentification</del>
- - <del>write socket API</del>
- - <del>write unit test for socket API</del>
- - <del>write readme.md</del>
- - <del>clean up</del>
+ - [x] fix Unit tests
+ - [x] add (simple) authentification
+ - [x] write socket API
+ - [x] write unit test for socket API
+ - [x] write readme.md
+ - [x] clean up
 - admin interface
- - <del>finisch On-Screen help</del>
- - <del>edit beverages</del>
- - <del>help to set price and validate</del>
- - <del>write readme.md</del>
- - <del>add tests</del>
- - <del>clean up</del>
- - <del>check connection status</del>
+ - [x] finisch On-Screen help
+ - [x] edit beverages
+ - [x] help to set price and validate
+ - [x] write readme.md
+ - [x] add tests
+ - [x] clean up
+ - [x] check connection status
 - app
- - improve small screen display
- - add firefox/ios install button / autoinstall
- - <del>write readme.md</del>
- - add tests
- - check connection status
- - <del>reload on server/manifest change</del>
- - <del>use socket API</del>
- - <del>refaktor Tally.js into own project</del>
- - <del>clean up</del>
+ - [ ] improve small screen display
+ - [ ] add firefox/ios install button / autoinstall
+ - [x] <del>write readme.md
+ - [x] add tests
+ - [ ] check connection status
+ - [ ] update to revised mvc version
+ - [x] <del>reload on server/manifest change
+ - [x] <del>use socket API
+ - [x] <del>refaktor Tally.js into own project
+ - [x] <del>clean up
 - misc
- - <del>Travis CI</del>
- - write product page
- - <del>Track errors with https://github.com/Lapple/ErrorBoard</del>
+ - [x] <del>Travis CI
+ - [ ] write product page
+ - [x] <del>Track errors with https://github.com/Lapple/ErrorBoard
 
 Credits:
 ---
