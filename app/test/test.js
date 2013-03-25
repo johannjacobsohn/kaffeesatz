@@ -52,7 +52,7 @@ describe("The App", function () {
 					expect( document.querySelectorAll(".beverage") ).to.have.length(2);
 					expect( document.querySelectorAll(".user-row") ).to.have.length(4);
 					done();
-				}, 1500);
+				}, 1800);
 			});
 		});
 	});
@@ -100,7 +100,7 @@ describe( "A user", function(){
 			expect( document.querySelectorAll(".beverage") ).to.have.length(2);
 			expect( document.querySelectorAll(".user-row") ).to.have.length(2);
 			done();
-		}, 100);
+		}, 1000);
 	});
 
 	it("removed users and beverages", function (done) {

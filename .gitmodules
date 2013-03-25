@@ -12,7 +12,7 @@
 	url = git://github.com/enyojs/onyx.git
 [submodule "app/enyo"]
 	path = app/enyo
-	url = git://github.com/enyojs/enyo.git
+	url = git://github.com/johannjacobsohn/enyo.git
 [submodule "app/lib/Tally"]
 	path = app/lib/Tally
 	url = https://github.com/johannjacobsohn/Tally

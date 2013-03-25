@@ -24,6 +24,12 @@
 		<!-- js -->
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="build/enyo.js"></script>
+		<script>
+			// monkey patch enyo mvc
+			enyo.Mixin = enyo.mixin;
+			enyo.Computed = enyo.computed;
+		</script>
+
 		<script src="build/app.js"></script>
 	</head>
 	<body class="enyo-unselectable">
