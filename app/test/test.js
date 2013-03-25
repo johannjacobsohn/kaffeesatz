@@ -42,19 +42,13 @@ describe("The App", function () {
 	});
 
 	it("has two beverages and two users per beverage (=four) when two users and two beverages were added on the server", function (done) {
-		var x = new enyo.Ajax({url: url + "/beverages/", method: "POST", headers: { "Authorization": "Basic " + btoa("coffee:coffee") }});
-		x.go({ name: 'B2' });
-		x.response(this, function(inSender, inResponse) {
-			var x = new enyo.Ajax({url: url + "/users/", method: "POST", headers: { "Authorization": "Basic " + btoa("coffee:coffee") }});
-			x.go({ name: 'U2' });
-			x.response(this, function(inSender, inResponse) {
-				setTimeout(function(){
-					expect( document.querySelectorAll(".beverage") ).to.have.length(2);
-					expect( document.querySelectorAll(".user-row") ).to.have.length(4);
-					done();
-				}, 1800);
-			});
-		});
+		new enyo.Ajax({url: url + "/beverages/", method: "POST", headers: { "Authorization": "Basic " + btoa("coffee:coffee") }}).go({ name: 'B2' });
+		var x = new enyo.Ajax({url: url + "/users/", method: "POST", headers: { "Authorization": "Basic " + btoa("coffee:coffee") }}).go({ name: 'U2' });
+		setTimeout(function(){
+			expect( document.querySelectorAll(".beverage") ).to.have.length(2);
+			expect( document.querySelectorAll(".user-row") ).to.have.length(4);
+			done();
+		}, 1900);
 	});
 });
 
