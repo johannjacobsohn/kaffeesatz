@@ -5,7 +5,7 @@
 var
 	request = require("request"),
 	expect = require('expect.js'),
-	server = require("../server.js"),
+	server = require("../"),
 	port = 1234,
 	url = "http://coffee:coffee@localhost:" + port,
 	client = require("socket.io-client").connect( "http://localhost", { port: port ,  'reconnect': false, 'force new connection': true});

@@ -46,8 +46,8 @@ app
  .use(express.bodyParser())
 
 // static files
- .use("/app", express["static"](__dirname + '/../app'))
- .use("/admin", express["static"](__dirname + '/../admin'))
+ .use("/app", express["static"](__dirname + '/../../app'))
+ .use("/admin", express["static"](__dirname + '/../../admin'))
 
 // REST-API:
 
