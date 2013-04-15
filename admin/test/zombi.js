@@ -2,11 +2,13 @@ var
 	Browser = require("zombie"),
 	expect = require('expect.js'),
 	request = require("request"),
-	url = "http://coffee:coffee@localhost:1234/admin/"
+//	url = "http://coffee:coffee@localhost:1234/admin/",
+	url = process.env.MAKE_COV_ADMIN ? "http://coffee:coffee@localhost:1234/admin/test-coverage.html" : "http://coffee:coffee@localhost:1234/admin/"//,
+//	url = "http://coffee:coffee@localhost:1234/admin/test-coverage.html"
 ;
 
 // start server
-require("../../server/server.js");
+require("../../app");
 
 // start browser
 var browser = new Browser();
@@ -220,5 +222,9 @@ describe("A beverage", function() {
 				done();
 			}, 1);
 		});
+	});
+
+	after(function(){
+		_$jscoverage = browser.window._$jscoverage;
 	});
 });
