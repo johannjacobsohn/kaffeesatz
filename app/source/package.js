@@ -1,7 +1,7 @@
 enyo.depends(
 	"$lib/layout",
 	"$lib/onyx",
-	"$lib/mvc",
+	"$lib/backbone-support",
 	"models",
 	"controllers",
 	"views",
