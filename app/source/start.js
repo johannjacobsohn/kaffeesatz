@@ -14,7 +14,9 @@ enyo.ready(function () {
 	Coffee.socket = io.connect('/')
 		.on("connect", function(){
 			enyo.log("connected, checking...");
-			window.applicationCache.update();
+			try{
+				window.applicationCache.update();
+			} catch(e){}
 		});
 
 	enyo.Scroller.touchScrolling = true;

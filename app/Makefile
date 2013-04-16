@@ -11,4 +11,17 @@ test:
 lint:
 	node_modules/.bin/jshint .
 
+coverage: mk-cov test-cov clean
+
+mk-cov:
+	@jscoverage source source-cov
+
+test-cov:
+	node_modules/.bin/mocha-phantomjs http://localhost:1234/app/test/coverage-runner.html -R json-cov | \
+	grep -v enyo.kind | \
+	json2htmlcov > coverage.html
+
+clean:
+	@rm -r source-cov
+
 .PHONY: test
