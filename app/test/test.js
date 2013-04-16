@@ -9,6 +9,14 @@ function click(el){
 }
 
 var url = "http://coffee:coffee@localhost:1234";
+var base_url = url;
+var post = function(url, data){
+	return new enyo.Ajax({
+		url: base_url + url,
+		method: "POST",
+		headers: { "Authorization": "Basic " + btoa("coffee:coffee") }
+	}).go(data);
+}
 
 describe("The App", function () {
 	it("has initially an empty beverage list", function () {
@@ -17,33 +25,31 @@ describe("The App", function () {
 	});
 
 	it("has one beverage when one beverage was added on the server", function (done) {
-		var x = new enyo.Ajax({url: url + "/beverages", method: "POST", headers: { "Authorization": "Basic " + btoa("coffee:coffee") }});
-		x.response(this, function(inSender, inResponse) {
-			setTimeout(function(){
-				expect( document.querySelectorAll(".beverage") ).to.have.length(1);
-				expect( document.querySelectorAll(".user-row") ).to.have.length(0);
-				done();
-			}, 1000);
-		});
-
-		x.go({"name": "Kaffee"});
+		post("/beverages", {"name": "Kaffee"})
+			.response(this, function(inSender, inResponse) {
+				setTimeout(function(){
+					expect( document.querySelectorAll(".beverage") ).to.have.length(1);
+					expect( document.querySelectorAll(".user-row") ).to.have.length(0);
+					done();
+				}, 1000);
+			});
 	});
 
 	it("has one user when one was added on the server", function (done) {
-		var x = new enyo.Ajax({url: url + "/users", method: "POST", headers: { "Authorization": "Basic " + btoa("coffee:coffee") }});
-		x.go({ name: 'Paul' });
-		x.response(this, function(inSender, inResponse) {
-			setTimeout(function(){
-				expect( document.querySelectorAll(".beverage") ).to.have.length(1);
-				expect( document.querySelectorAll(".user-row") ).to.have.length(1);
-				done();
-			}, 100);
+		post("/users", {"name": "Paul"})
+			.response(this, function(inSender, inResponse) {
+				setTimeout(function(){
+					expect( document.querySelectorAll(".beverage") ).to.have.length(1);
+					expect( document.querySelectorAll(".user-row") ).to.have.length(1);
+					done();
+				}, 100);
 		});
 	});
 
 	it("has two beverages and two users per beverage (=four) when two users and two beverages were added on the server", function (done) {
-		new enyo.Ajax({url: url + "/beverages/", method: "POST", headers: { "Authorization": "Basic " + btoa("coffee:coffee") }}).go({ name: 'B2' });
-		var x = new enyo.Ajax({url: url + "/users/", method: "POST", headers: { "Authorization": "Basic " + btoa("coffee:coffee") }}).go({ name: 'U2' });
+		post("/beverages", {"name": "B2"})
+		post("/users", {"name": "U2"})
+
 		setTimeout(function(){
 			expect( document.querySelectorAll(".beverage") ).to.have.length(2);
 			expect( document.querySelectorAll(".user-row") ).to.have.length(4);
