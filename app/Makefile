@@ -19,7 +19,7 @@ mk-cov:
 test-cov:
 	node_modules/.bin/mocha-phantomjs http://localhost:1234/app/test/coverage-runner.html -R json-cov | \
 	grep -v enyo.kind | \
-	json2htmlcov > coverage.html
+	node_modules/.bin/json2htmlcov > coverage.html
 
 clean:
 	@rm -r source-cov
