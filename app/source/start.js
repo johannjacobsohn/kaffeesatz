@@ -17,8 +17,10 @@ enyo.ready(function () {
 			try{
 				window.applicationCache.update();
 			}catch(e){}
-		});
-		.on("disconnect", enyo.Signals.send.bind(enyo.Signals, "ondisconnect") )
+		})
+		.on("disconnect", function(){
+			enyo.Signals.send("ondisconnect");
+		})
 	;
 
 	enyo.Scroller.touchScrolling = true;

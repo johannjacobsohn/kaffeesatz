@@ -14,11 +14,9 @@ enyo.kind({
 		this.addRemoveClass("off", !this.connected);
 	},
 	connect: function(){
-		console.log("setConnected true")
 		this.setConnected(true);
 	},
 	disconnect: function(){
-		console.log("setConnected false")
 		this.setConnected(false);
 	}
 });

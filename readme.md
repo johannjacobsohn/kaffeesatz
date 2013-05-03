@@ -112,18 +112,18 @@ Setup
 
 2. Checkout & Setup
 
-        git clone https://github.com/Satzmedia/kaffeesatz
-        cd kaffeesatz
-        make setup
+        $ git clone https://github.com/Satzmedia/kaffeesatz
+        $ cd kaffeesatz
+        $ make setup
 
 3. (optional) Run tests
 
-        make test
+        $ make test
 
 4. Start database and run server
 
-        mongod
-        node app
+        $ mongod &
+        $ node app
 
 5. Open App
     - App at [http://localhost:1234/app/debug.html](http://localhost:1234/app/debug.html)
@@ -133,35 +133,35 @@ TODO
 ----
 
 - server
- - [x] fix Unit tests
- - [x] add (simple) authentification
- - [x] write socket API
- - [x] write unit test for socket API
- - [x] write readme.md
- - [x] clean up
+ - [✓] fix Unit tests
+ - [✓] add (simple) authentification
+ - [✓] write socket API
+ - [✓] write unit test for socket API
+ - [✓] write readme.md
+ - [✓] clean up
 - admin interface
- - [x] finisch On-Screen help
- - [x] edit beverages
- - [x] help to set price and validate
- - [x] write readme.md
- - [x] add tests
- - [x] clean up
- - [x] check connection status
+ - [✓] finisch On-Screen help
+ - [✓] edit beverages
+ - [✓] help to set price and validate
+ - [✓] write readme.md
+ - [✓] add tests
+ - [✓] clean up
+ - [✓] check connection status
 - app
  - [ ] improve small screen display and overall design
- - [x] add firefox/ios install button / autoinstall
- - [x] write readme.md
- - [x] add tests
- - [x] check connection status
- - [x] update to revised mvc version
- - [x] reload on server/manifest change
- - [x] use socket API
- - [x] refaktor Tally.js into own project
- - [x] clean up
+ - [✓] add firefox/ios install button / autoinstall
+ - [✓] write readme.md
+ - [✓] add tests
+ - [✓] check connection status
+ - [✓] update to revised mvc version
+ - [✓] reload on server/manifest change
+ - [✓] use socket API
+ - [✓] refaktor Tally.js into own project
+ - [✓] clean up
 - misc
- - [x] Travis CI
+ - [✓] Travis CI
  - [ ] write product page
- - [x] Track errors with https://github.com/Lapple/ErrorBoard
+ - [✓] Track errors with https://github.com/Lapple/ErrorBoard
 
 Credits:
 ---
