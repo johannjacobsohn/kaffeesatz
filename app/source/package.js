@@ -2,6 +2,7 @@ enyo.depends(
 	"$lib/layout",
 	"$lib/onyx",
 	"$lib/backbone-support",
+	"$lib/enyo-2-components/webappinstaller",
 	"models",
 	"controllers",
 	"views",

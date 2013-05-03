@@ -149,19 +149,19 @@ TODO
  - [x] check connection status
 - app
  - [ ] improve small screen display
- - [ ] add firefox/ios install button / autoinstall
- - [x] <del>write readme.md
+ - [x] add firefox/ios install button / autoinstall
+ - [x] write readme.md
  - [x] add tests
  - [ ] check connection status
- - [ ] update to revised mvc version
- - [x] <del>reload on server/manifest change
- - [x] <del>use socket API
- - [x] <del>refaktor Tally.js into own project
- - [x] <del>clean up
+ - [x] update to revised mvc version
+ - [x] reload on server/manifest change
+ - [x] use socket API
+ - [x] refaktor Tally.js into own project
+ - [x] clean up
 - misc
- - [x] <del>Travis CI
+ - [x] Travis CI
  - [ ] write product page
- - [x] <del>Track errors with https://github.com/Lapple/ErrorBoard
+ - [x] Track errors with https://github.com/Lapple/ErrorBoard
 
 Credits:
 ---
