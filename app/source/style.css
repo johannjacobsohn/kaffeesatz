@@ -1,95 +1,77 @@
 body {
 	background: #f3f3f3;
-	skip.padding: 10px;
 }
 
-
 .beverage{
-	width: 88%;
+	width: 100%;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	float: left;
-	margin-top:10px;
+	margin-top:20px;
 }
 
 @media screen and (min-width: 800px) {
 	.beverage{
 		width: 48%;
 	}
+	.beverage:nth-child( odd ){
+		margin-right: 2%;
+		clear: left;
+	}
 }
-.beverage:nth-child( odd ){
-	margin-right: 2%;
+@media screen and (min-width: 1200px) {
+	.beverage{
+		width: 31%;
+		margin-right: 2%;
+	}
+	.beverage:nth-child( odd ){
+		clear: none;
+	}
+	.beverage:nth-child( 3n + 4 ){
+		clear: left;
+	}
 }
 .beverage > .name{
 	text-align: center;
-	border-bottom: 1px solid #c5c5c5;
+	font-weight: bold;
+	border-bottom: 1px solid #333;
 }
 .beverage > .name~*{
-	border-top: 1px solid #f6f6f6;
+	border-top: 1px solid #bbb;
 }
 
-
-skip.user-row {
-	border-bottom: 1px solid #ccc;
-	border-top: 1px solid #fff;
+.users{
+	border-spacing: 1px;
+	width: 100%;
 }
 .user-row .name, 
 .user-row .count{
 	padding: 10px;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #fff;
 }
 .user-row .name{
-	width: 200px;
-	skip-border-right: 1px solid #fff;
+	width: 1px;
+	border-right: 1px solid #ccc;
 }
-skip.user-row .count{
+.user-row .count{
 	border-left: 1px solid #ccc;
 }
 
 
-/* http://www.sitepoint.com/pure-css3-paper-curls/ */
 .root {
-	height: 90%;
-	top: 3%;
+	overflow: hidden;
+	height: 96%;
+	top: 2%;
 	margin-top: 10px;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	position: relative;
-	width: 80%;
-	padding: 50px;
-	padding-top: 20px;
+	width: 96%;
+	padding: 20px;
 	margin: 0 auto;
 	background-color: #fff;
-	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.1);
 }
-
-.innerwrapper:before, .innerwrapper:after{
-	position: absolute;
-	width: 40%;
-	height: 10px;
-	content: ' ';
-	left: 12px;
-	bottom: 12px;
-	background: transparent;
-	-webkit-transform: skew(-5deg) rotate(-5deg);
-	-moz-transform: skew(-5deg) rotate(-5deg);
-	-ms-transform: skew(-5deg) rotate(-5deg);
-	-o-transform: skew(-5deg) rotate(-5deg);
-	transform: skew(-5deg) rotate(-5deg);
-	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-	z-index: -1;
-} 
-
-.innerwrapper:after{
-	left: auto;
-	right: 12px;
-	-webkit-transform: skew(5deg) rotate(5deg);
-	-moz-transform: skew(5deg) rotate(5deg);
-	-ms-transform: skew(5deg) rotate(5deg);
-	-o-transform: skew(5deg) rotate(5deg);
-	transform: skew(5deg) rotate(5deg);
-} 
-/**/

@@ -148,7 +148,7 @@ TODO
  - [✓] clean up
  - [✓] check connection status
 - app
- - [ ] improve small screen display and overall design
+ - [✓] improve small screen display and overall design
  - [✓] add firefox/ios install button / autoinstall
  - [✓] write readme.md
  - [✓] add tests

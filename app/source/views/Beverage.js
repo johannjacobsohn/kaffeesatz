@@ -11,13 +11,6 @@ enyo.kind({
 		{name: "name", classes: "name"},
 		{name: "users", fit: true, kind: "Coffee.UserList"}
 	]
-//	,
-//	create: function(){
-//		this.inherited(arguments);
-//		t = this
-//		console.log("create Beverage")
-//		console.log(this.paul)
-//	}
 });
 
 
