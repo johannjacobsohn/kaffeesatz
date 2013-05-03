@@ -3,7 +3,7 @@ enyo.ready(function () {
 		model: Coffee.UserModel,
 		url: '/users',
 		comparator: function(user){
-			return user.get('name');
+			return user.get('name').toLowerCase();
 		}
 	});
 });
