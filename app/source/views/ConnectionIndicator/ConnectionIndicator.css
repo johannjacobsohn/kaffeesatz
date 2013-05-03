@@ -1,0 +1,25 @@
+.connection-indicator{
+	position: absolute;
+	left: -36px;
+	top: -2px;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	padding: 0 10px;
+	border: 24px solid transparent;
+	border-bottom-color: green;
+	color: #fff;
+	letter-spacing: 2px;
+	text-shadow: 1px 1px 1px #666;
+	box-shadow: 1px 1px 3px #666;
+}
+.connection-indicator.off{
+	border-bottom-color: red;
+}
+.connection-indicator > *{
+	margin-bottom: -20px;
+	display: none;
+}
+.connection-indicator.on > .on,
+.connection-indicator.off > .off{
+	display: block;
+}

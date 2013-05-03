@@ -148,11 +148,11 @@ TODO
  - [x] clean up
  - [x] check connection status
 - app
- - [ ] improve small screen display
+ - [ ] improve small screen display and overall design
  - [x] add firefox/ios install button / autoinstall
  - [x] write readme.md
  - [x] add tests
- - [ ] check connection status
+ - [x] check connection status
  - [x] update to revised mvc version
  - [x] reload on server/manifest change
  - [x] use socket API

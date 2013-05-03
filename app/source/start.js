@@ -13,11 +13,13 @@ window.applicationCache.addEventListener("updateready", function(){
 enyo.ready(function () {
 	Coffee.socket = io.connect('/')
 		.on("connect", function(){
-			enyo.log("connected, checking...");
+			enyo.Signals.send("onconnect");
 			try{
 				window.applicationCache.update();
-			} catch(e){}
+			}catch(e){}
 		});
+		.on("disconnect", enyo.Signals.send.bind(enyo.Signals, "ondisconnect") )
+	;
 
 	enyo.Scroller.touchScrolling = true;
 

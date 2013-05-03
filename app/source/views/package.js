@@ -7,7 +7,8 @@ enyo.depends(
 	"UserList.js",
 	"User.js",
 
-	"$lib/Tally"
+	"$lib/Tally",
+	"ConnectionIndicator"
 );
 
 
