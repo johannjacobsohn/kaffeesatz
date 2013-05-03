@@ -1,8 +1,8 @@
 enyo.kind({
 	name: "Coffee.User",
 	controller: "Coffee.UserController",
-	layoutKind: "enyo.FittableColumnsLayout",
 	fit: true,
+	tag: "tr",
 	classes: "user-row",
 	bindings: [
 		{from: ".controller.name", to: ".$.name.content"},
@@ -11,8 +11,8 @@ enyo.kind({
 		{from: ".c", to: ".$.count.number"}
 	],
 	components: [
-		{name: "name", classes: "name"},
-//		{name: "counter", classes: "count"},
-		{kind: "Tally", fit: true, name: "count", classes: "count", number: 0}
+		{name: "name", classes: "name", tag: "td"},
+//		{name: "counter", classes: "count", tag: "td"},
+		{kind: "Tally", fit: true, name: "count", classes: "count", number: 0, tag: "td"}
 	]
 });

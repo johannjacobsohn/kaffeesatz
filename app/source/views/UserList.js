@@ -5,7 +5,7 @@ enyo.kind({
 		{from: ".controller.length", to: ".$.repeater.count"}
 	],
 	components: [
-		{ kind: "Repeater", onSetupItem: "setupItem", components:[
+		{kind: "Repeater", onSetupItem: "setupItem", tag: "table", classes: "users", components:[
 			{name: "item", kind: "Coffee.User"}
 		]}
 	],
