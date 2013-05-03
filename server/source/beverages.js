@@ -1,5 +1,10 @@
 var db = require("./db.js").db;
-db.beverages.ensureIndex({name: 1}, {unique: true, dropDups: true});
+db.beverages.ensureIndex({name: 1}, {unique: true, dropDups: true}, function(err, indexName) {
+	"use strict";
+	if(err){
+		console.log(err);
+	}
+});
 
 exports.beverages = {
 	list: function(res){

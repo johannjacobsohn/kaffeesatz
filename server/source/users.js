@@ -1,6 +1,11 @@
 var db = require("./db.js").db;
 
-db.users.ensureIndex({name: 1}, {unique: true});
+db.users.ensureIndex({name: 1}, {unique: true},  function(err, indexName) {
+	"use strict";
+	if(err){
+		console.log(err);
+	}
+});
 
 exports.users = {
 	addBeverage : function(user, beverage, res){
