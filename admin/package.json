@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"dependencies": {},
 	"devDependencies": {
-		"zombie": "*",
+		"zombie": "1.4.1",
 		"mocha": "*",
 		"expect.js": "*",
 		"jshint": "*",
