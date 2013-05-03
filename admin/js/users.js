@@ -20,7 +20,7 @@
 		model: User,
 		url: '/users',
 		comparator: function(user){
-			return user.get('name');
+			return user.get('name').toLowerCase();
 		}
 	});
 

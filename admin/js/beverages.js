@@ -21,7 +21,7 @@
 		url: '/beverages',
 		comparator: function(beverage){
 			"use strict";
-			return beverage.get('name');
+			return beverage.get('name').toLowerCase();
 		}
 	});
 
