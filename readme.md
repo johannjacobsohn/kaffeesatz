@@ -59,9 +59,9 @@ I has its own readme file at [/admin/readme.md](/tree/master/admin/readme.md).
 User App
 -------- 
 
-The user app is an [enyo-app](http://www.enyojs.com/) using the very new and 
-exciting [mvc-plugin](https://github.com/enyojs/mvc). It's directly derived 
-from the [Bootplate-MVC-App](https://github.com/enyojs/bootplate-mvc).
+The user app is an [enyo-app](http://www.enyojs.com/) using the new and
+exciting [enyo mvc pattern](https://github.com/enyojs/enyo/wiki/Enyo-MVC-Intro).
+It's directly derived from the [Bootplate-MVC-App](https://github.com/enyojs/bootplate-mvc).
 
 I has its own readme file at [/app/readme.md](/tree/master/app/readme.md).
 

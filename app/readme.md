@@ -3,10 +3,7 @@ Kaffeesatz: Coffee list (aka user app)
 
 The coffee list app displays a clickable list of users and their beverages, 
 its written in [enyo](http://www.enyojs.com/) using the new 
-[mvc-plugin](https://github.com/enyojs/mvc) (which itself uses 
-[backbone](http://backbonejs.org)).
-
-This component is still in flux and not yet very efficient.
+[enyo mvc pattern](https://github.com/enyojs/enyo/wiki/Enyo-MVC-Intro).
 
 Component overview
 ------------------
