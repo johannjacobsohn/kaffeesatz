@@ -1,0 +1,17 @@
+---
+applications:
+  .:
+    name: kaffeesatz
+    framework:
+      name: node
+      info:
+        mem: 64M
+        description: Node.js Application
+        exec: 
+    infra: eu-aws
+    url: ${name}.${target-base}
+    mem: 512M
+    instances: 1
+    services:
+      mongodb-63c85:
+        type: mongodb
