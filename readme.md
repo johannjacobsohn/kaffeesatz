@@ -129,39 +129,6 @@ Setup
     - App at [http://localhost:1234/app/debug.html](http://localhost:1234/app/debug.html)
     - Admin interface at [http://localhost:1234/app/](http://localhost:1234/app/)
 
-TODO
-----
-
-- server
- - [✓] fix Unit tests
- - [✓] add (simple) authentification
- - [✓] write socket API
- - [✓] write unit test for socket API
- - [✓] write readme.md
- - [✓] clean up
-- admin interface
- - [✓] finisch On-Screen help
- - [✓] edit beverages
- - [✓] help to set price and validate
- - [✓] write readme.md
- - [✓] add tests
- - [✓] clean up
- - [✓] check connection status
-- app
- - [✓] improve small screen display and overall design
- - [✓] add firefox/ios install button / autoinstall
- - [✓] write readme.md
- - [✓] add tests
- - [✓] check connection status
- - [✓] update to revised mvc version
- - [✓] reload on server/manifest change
- - [✓] use socket API
- - [✓] refaktor Tally.js into own project
- - [✓] clean up
-- misc
- - [✓] Travis CI
- - [ ] write product page
- - [✓] Track errors with https://github.com/Lapple/ErrorBoard
 
 Credits:
 ---
