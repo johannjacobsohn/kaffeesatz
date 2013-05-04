@@ -22,7 +22,7 @@ clean:
 	@rm -r js-cov
 
 clean-dev:
-	rm -r node_modules
+	-rm -r node_modules
 	npm install --production
 
 .PHONY: test
