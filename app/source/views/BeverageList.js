@@ -1,5 +1,6 @@
 enyo.kind({
 	name: "Coffee.BeverageList",
+	kind: "Scroller",
 	controller: "Coffee.BeverageCollectionController",
 	bindings: [
 		{from: ".controller.length", to: "$.repeater.count"}
