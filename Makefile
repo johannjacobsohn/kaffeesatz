@@ -14,7 +14,12 @@ lint:
 	$(MAKE) lint -C admin
 	$(MAKE) lint -C app
 
-deploy:
+clean-dev:
+	$(MAKE) clean-dev -C server
+	$(MAKE) clean-dev -C admin
+	$(MAKE) clean-dev -C app
+
+deploy: clean-dev
 	af update
 
 .PHONY: test

@@ -21,4 +21,8 @@ test-cov:
 clean:
 	@rm -r js-cov
 
+clean-dev:
+	rm -r node_modules
+	npm install --production
+
 .PHONY: test
