@@ -307,6 +307,12 @@ header li a img{
 /* Section - for main page content */
 
 section {
+	-webkit-box-sizing: padding-box;
+	   -moz-box-sizing: padding-box;
+	    -ms-box-sizing: padding-box;
+	     -o-box-sizing: padding-box;
+	        box-sizing: padding-box;
+	width: 100%;
 	padding-left:300px;
 	float: left;
 	padding-bottom:50px;
