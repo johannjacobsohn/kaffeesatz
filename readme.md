@@ -44,7 +44,7 @@ validation - in fact it does get corrupted easily. Its covered by
 [mocha](http://visionmedia.github.com/mocha/) tests (see /server/tests) and 
 hosted at [appfog](https://www.appfog.com/).
 
-I has its own readme file at [/server/readme.md](/tree/master/server/readme.md).
+I has its own readme file at [/server/readme.md](server/readme.md).
 
 
 Admin Interface
@@ -53,7 +53,7 @@ Admin Interface
 The administration is written with [backbone.js](http://backbonejs.org/) and 
 [Twitter Bootstrap](http://twitter.github.com/bootstrap/). 
 
-I has its own readme file at [/admin/readme.md](/tree/master/admin/readme.md).
+I has its own readme file at [/admin/readme.md](admin/readme.md).
 
 
 User App
@@ -63,7 +63,7 @@ The user app is an [enyo-app](http://www.enyojs.com/) using the new and
 exciting [enyo mvc pattern](https://github.com/enyojs/enyo/wiki/Enyo-MVC-Intro).
 It's directly derived from the [Bootplate-MVC-App](https://github.com/enyojs/bootplate-mvc).
 
-I has its own readme file at [/app/readme.md](/tree/master/app/readme.md).
+I has its own readme file at [/app/readme.md](app/readme.md).
 
 
 Goals
