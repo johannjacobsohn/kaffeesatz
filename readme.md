@@ -1,25 +1,25 @@
 Kaffeesatz(media)
 =================
 
-This is just another toy project, comprising a server, an admin interface 
+This is just another toy project, comprising a server, an admin interface
 and a mobile app. The entire project is (mostly) written in Javascript.
 
 Architecture
 ------------
 
-The project consists of three components: a server which serves two apps and 
-keeps the data; a coffee list, which users can use to book beverages and a 
+The project consists of three components: a server which serves two apps and
+keeps the data; a coffee list, which users can use to book beverages and a
 admin interface which can be used to organize users and beverages.
 
-All the components communicate through an (partly password protected) 
+All the components communicate through an (partly password protected)
 REST-API and additionally through websockets.
 
 
      ---------------------------------------------------------------------------
      |                                Server                                   |
      ---------------------------------------------------------------------------
-          ↧  serves apps      ⇅ exposes partly       ↓ sends updates  
-             as static          password-protected     through 
+          ↧  serves apps      ⇅ exposes partly       ↓ sends updates
+             as static          password-protected     through
              files              REST-Interface         websockets
      ------------------------------------ --------------------------------------
      |            User App              | |    Admin Interface                 |
@@ -31,17 +31,16 @@ REST-API and additionally through websockets.
 Server
 ------
 
-The server (in /server) serves both the admin interface and the user app 
-(both are static). Its written in [NodeJS](http://nodejs.org/) using the 
-[express framework](http://expressjs.com/) and offers a REST-Interface and 
+The server (in /server) serves both the admin interface and the user app
+(both are static). It is written in [NodeJS](http://nodejs.org/) using the
+[express framework](http://expressjs.com/), offers a REST interface and
 accepts websocket connections (thanks to [socket.io](http://socket.io/)).
 
-Data is save to and retrieved from a mongoDB (via 
-[mongojs](https://github.com/gett/mongojs)).
+Data is save to and retrieved from a mongoDB (via [mongojs](https://github.com/gett/mongojs)).
 
-At the moment the server does not enforce any type of security or data 
-validation - in fact it does get corrupted easily. Its covered by 
-[mocha](http://visionmedia.github.com/mocha/) tests (see /server/tests) and 
+At the moment the server does not enforce any type of security or data
+validation - in fact it does get corrupted easily. Its covered by
+[mocha](http://visionmedia.github.com/mocha/) tests (see /server/tests) and
 hosted at [appfog](https://www.appfog.com/).
 
 I has its own readme file at [/server/readme.md](server/readme.md).
@@ -50,14 +49,14 @@ I has its own readme file at [/server/readme.md](server/readme.md).
 Admin Interface
 --------------
 
-The administration is written with [backbone.js](http://backbonejs.org/) and 
-[Twitter Bootstrap](http://twitter.github.com/bootstrap/). 
+The administration is written with [backbone.js](http://backbonejs.org/) and
+[Twitter Bootstrap](http://twitter.github.com/bootstrap/).
 
 I has its own readme file at [/admin/readme.md](admin/readme.md).
 
 
 User App
--------- 
+--------
 
 The user app is an [enyo-app](http://www.enyojs.com/) using the new and
 exciting [enyo mvc pattern](https://github.com/enyojs/enyo/wiki/Enyo-MVC-Intro).
