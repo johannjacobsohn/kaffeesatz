@@ -17,6 +17,8 @@ var browser = new Browser();
 var p = browser.visit(url);
 
 describe("a user", function() {
+	this.timeout(50000);
+
 	it("can be added", function(done) {
 		p.then(function () {
 			expect( browser.querySelectorAll("#users tr") ).to.have.length(0);
@@ -43,7 +45,7 @@ describe("a user", function() {
 		})
 		.then(done, done);
 	});
-	
+
 	it("is sorted correctly when added", function(done) {
 		p.then(function () {
 			return browser
@@ -112,6 +114,7 @@ describe("a user", function() {
 //beverages
 
 describe("A beverage", function() {
+		this.timeout(50000);
 	it("can be added", function(done) {
 		p.then(function () {
 			expect( browser.querySelectorAll("#beverages tr") ).to.have.length(0);
@@ -123,8 +126,8 @@ describe("A beverage", function() {
 				.pressButton("#add-beverage .btn-primary");
 		})
 		.then(function () {
-			expect( browser.text("#beverages tr:first .name") ).to.be("Klaus");
-			expect( browser.text("#beverages tr:first .current-price") ).to.be("0,20€");
+			expect( browser.text("#beverages tr .name") ).to.be("Klaus");
+			expect( browser.text("#beverages tr .current-price") ).to.be("0,20€");
 			expect( browser.querySelectorAll("#beverages tr") ).to.have.length(1);
 		})
 		.then(done, done);
@@ -196,7 +199,7 @@ describe("A beverage", function() {
 		})
 		.then(done, done);
 	});
-	
+
 	it("is added in the interface when added on the server", function (done) {
 		var url = "http://coffee:coffee@localhost:1234";
 		var o ={

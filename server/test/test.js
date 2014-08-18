@@ -1,6 +1,6 @@
 /**
- * 
- *   
+ *
+ *
  */
 var
 	request = require("request"),
@@ -8,8 +8,11 @@ var
 	server = require("../"),
 	port = 1234,
 	url = "http://coffee:coffee@localhost:" + port,
-	client = require("socket.io-client").connect( "http://localhost", { port: port ,  'reconnect': false, 'force new connection': true});
+	client = require('socket.io-client')('http://localhost:' + port);
 
+before(function(done){
+  client.on('connect', done);
+})
 
 describe( "users", function(){
 	describe( "server: GET /users/", function(){
@@ -34,7 +37,6 @@ describe( "users", function(){
 			};
 			var socketEventReceived = false;
 			client.on('userAdded', function() {
-				console.log(arguments)
 				socketEventReceived = true;
 			});
 
@@ -62,7 +64,7 @@ describe( "users", function(){
 				headers:{'content-type': 'application/x-www-form-urlencoded'},
 				body:require('querystring').stringify( {name: "Klaus"} )
 			};
-			
+
 			var socketEventReceived = false;
 			client.on('userAdded', function() {
 				socketEventReceived = true;
@@ -116,12 +118,12 @@ describe( "users", function(){
 
 	describe( "server: POST /users/{{user}}/{{beverages}}", function(){
 		it( "adds a beverage to an user, returns user", function(done){
-			
+
 			var socketEventReceived = false;
 			client.on('userChanged', function() {
 				socketEventReceived = true;
 			});
-			
+
 			request.post(url+"/users/Klaus/Espresso", function(err, body){
 				expect(err).to.be(null);
 				var returned = JSON.parse(body.body);
@@ -172,7 +174,7 @@ describe( "users", function(){
 	});
 
 	describe( "server: DELETE /users/{{user}}", function(){
-		
+
 		var socketEventReceived = false;
 		client.on('userDeleted', function() {
 			socketEventReceived = true;
@@ -222,7 +224,7 @@ describe( "beverages: ", function(){
 				headers:{'content-type': 'application/x-www-form-urlencoded'},
 				body:require('querystring').stringify( {name: "Kaffee", price: 0.99} )
 			};
-			
+
 			var socketEventReceived = false;
 			client.on('beverageAdded', function() {
 				socketEventReceived = true;
@@ -247,7 +249,7 @@ describe( "beverages: ", function(){
 
 	describe( "server: PUT /beverages/{{beverage}}", function(){
 		it( "update a beverage but cannot change the name", function(done){
-			
+
 			var o = {
 				uri:url+"/beverages/Kaffee",
 				headers:{'content-type': 'application/x-www-form-urlencoded'},

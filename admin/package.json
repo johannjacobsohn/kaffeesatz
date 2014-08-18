@@ -4,11 +4,11 @@
 	"license": "MIT",
 	"dependencies": {},
 	"devDependencies": {
-		"zombie": "1.4.1",
-		"mocha": "*",
-		"expect.js": "*",
-		"jshint": "*",
-		"request": "*"
+		"zombie": "2.x",
+		"mocha": "1.21.x",
+		"expect.js": "0.3.x",
+		"jshint": "2.5.x",
+		"request": "2.40.x"
 	}
 }
 

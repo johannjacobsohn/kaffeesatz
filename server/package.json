@@ -3,16 +3,16 @@
 	"version": "1.0.0",
 	"license": "MIT",
 	"dependencies": {
-		"express": "3.x",
-		"mongojs": "*",
-		"socket.io": "*"
+		"express": "3.16.x",
+		"mongojs": "0.13.x",
+		"socket.io": "1.0.x"
 	},
 	"devDependencies": {
-		"request": "*",
-		"mocha": "*",
-		"expect.js": "*",
-		"jshint": "*",
-		"socket.io-client": "*"
+		"request": "2.40.x",
+		"mocha": "1.21.x",
+		"expect.js": "0.3.x",
+		"jshint": "2.5.x",
+		"socket.io-client": "1.0.x"
 	}
 }
 

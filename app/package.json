@@ -5,11 +5,11 @@
 	"dependencies": {},
 	"devDependencies": {
 		"request": "2.x",
-		"mocha-phantomjs": "*",
-		"mocha": "*",
-		"expect.js": "*",
-		"jshint": "*",
-		"json2htmlcov": "*"
+		"mocha-phantomjs": "3.5.x",
+		"mocha": "1.21.x",
+		"expect.js": "0.2",
+		"jshint": "2.5.x",
+		"json2htmlcov": "0.1.x"
 	}
 }
 
