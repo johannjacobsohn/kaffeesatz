@@ -6,6 +6,7 @@ setup:
 
 test:
 	node ../app &
+	sleep 4
 	node_modules/.bin/mocha-phantomjs http://localhost:1234/app/test/runner.html -s localToRemoteUrlAccessEnabled=true -s webSecurityEnabled=false
 
 lint:
